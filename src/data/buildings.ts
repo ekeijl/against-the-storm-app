@@ -633,14 +633,14 @@ export const buildings: Building[] = [
 ];
 
 // [id, Set(...ingredients)]]
-const ingredientTuples = buildings.map((b) => {
+const ingredientTuples: [string, Set<string>][] = buildings.map((b) => {
 	const ingredients = b.recipes.map((r) => {
 		return r.ingredients.map((i) => {
 			return i.map((p) => p.id);
 		});
 	});
 
-	return [b.id, new Set<string>(ingredients.flat(2))] as const;
+	return [b.id, new Set<string>(ingredients.flat(2))];
 });
 
 // Pre-calculate a mapping of [building id => Set of ingredients (unique)]
@@ -649,10 +649,10 @@ export const ingredientsPerBuilding = new Map<string, Set<string>>(
 	ingredientTuples
 );
 
-const productTuples = buildings.map((b) => {
+const productTuples: [string, Set<string>][] = buildings.map((b) => {
 	const products = b.recipes.map((r) => r.product.id);
 
-	return [b.id, new Set<string>(products)] as const;
+	return [b.id, new Set<string>(products)];
 });
 
 // Map [buildingId => Set of products (unique)]
