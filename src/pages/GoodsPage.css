@@ -1,0 +1,26 @@
+.goods-page {
+	display: flex;
+	flex-direction: column;
+	flex: 1;
+}
+
+.goods-page .goods-selector {
+	flex: 0;
+	margin-bottom: 1rem;
+}
+
+.goods-page .goods-graph {
+	flex: 0 1 100%;
+}
+
+.buildings-for-item {
+	display: flex;
+	gap: 0.5rem;
+}
+.buildings-for-item .active {
+	background-color: var(--highlight-color);
+}
+
+.buildings-for-item .active:hover {
+	background-color: var(--highlight-color-light);
+}

@@ -1,0 +1,74 @@
+.building {
+    flex: 1;
+}
+
+.building[open] .building-title {
+    box-shadow: inset 0 0 30px var(--highlight-color);
+}
+.building-title {
+    background: #222222;
+    border: 2px outset #ad9d78;
+    font-size: 1rem;
+    font-weight: bold;
+    padding: 0.25rem 0.5rem;
+    display: flex;
+    align-items: center;
+    line-height: 2rem;
+}
+.building-products {
+    margin-left: auto;
+}
+
+.building-recipes {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-top: 0.5rem;
+}
+
+.recipe {
+    border: 2px solid #494138;
+    background: #000;
+}
+.recipe-title {
+    background: #121616;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem;
+    margin: 0;
+    border-bottom: 2px solid #494138;
+
+    font-family: "Times";
+    font-size: 1.3rem;
+    font-variant-caps: small-caps;
+}
+.recipe-name:first-letter {
+    text-transform: uppercase;
+}
+
+.recipe-ingredients {
+    margin: 0 0.5rem 0.5rem 0.5rem;
+    display: grid;
+    gap: 0.5rem;
+    grid-template-columns: repeat(4, 1fr);
+}
+.part {
+    background: #4d3325;
+    padding: 0.5rem;
+    display: flex;
+    justify-content: center;
+    gap: 0.25rem;
+}
+.product.part {
+    grid-area: 1 / 4 / 1 / 4;
+    background: #2f221c;
+}
+
+@media screen and (min-width: 768px) {
+    .building-recipes {
+        display: grid;
+        gap: 0.5rem;
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
