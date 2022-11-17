@@ -19,7 +19,7 @@ export const useHash = () => {
   }, [hashChangeHandler]);
 
   const updateHash = useCallback(
-    (newHash) => {
+    (newHash: string) => {
       newHash = stripHash(newHash);
       if (newHash !== hash) window.location.hash = "#" + newHash;
     },
