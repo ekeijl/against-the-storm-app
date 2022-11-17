@@ -6,24 +6,26 @@ import { useHash } from "./hooks/useHash";
 import "./styles.css";
 
 export default function App() {
-	const [hash] = useHash();
-	const [page, setPage] = useState<string>(hash || "buildings");
+  const [hash] = useHash();
+  const [page, setPage] = useState<string | ((hash: string) => void) | null>(
+    hash || "buildings"
+  );
 
-	let pageComponent = null;
-	switch (page) {
-		case "goods":
-			pageComponent = <GoodsPage />;
-			break;
+  let pageComponent = null;
+  switch (page) {
+    case "goods":
+      pageComponent = <GoodsPage />;
+      break;
 
-		case "buildings":
-		default:
-			pageComponent = <BuildingsPage />;
-	}
+    case "buildings":
+    default:
+      pageComponent = <BuildingsPage />;
+  }
 
-	return (
-		<div className="App">
-			<Header onSetPage={setPage} />
-			{pageComponent}
-		</div>
-	);
+  return (
+    <div className="App">
+      <Header onSetPage={setPage} />
+      {pageComponent}
+    </div>
+  );
 }
