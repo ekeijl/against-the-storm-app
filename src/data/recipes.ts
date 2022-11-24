@@ -790,7 +790,7 @@ export const pickledGoods0 = {
     ],
   ],
   product: { id: "pickledGoods", amount: 10 },
-  stars: 1,
+  stars: 0,
 };
 export const pickledGoods1 = {
   ingredients: [
