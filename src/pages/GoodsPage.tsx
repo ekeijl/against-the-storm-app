@@ -135,7 +135,8 @@ const BuildingsForItem = ({
 const renderLink = (link: Link<RecipeNode>) => {
   // extend link with text sprite
   // https://github.com/vasturiano/react-force-graph/blob/master/example/text-links/index-3d.html
-  const amount = (link.source as RecipeNode)?.amount || 0;
+  const recipeNode = link.source as RecipeNode;
+  const amount = recipeNode?.amount || 0;
   const sprite = new SpriteText(String(amount));
   sprite.color = "lightgrey";
   sprite.textHeight = 5;
