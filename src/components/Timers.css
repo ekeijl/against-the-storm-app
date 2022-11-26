@@ -1,0 +1,37 @@
+.timer {
+  position: fixed;
+  right: 2rem;
+  bottom: 2rem;
+  padding: 1rem 2rem;
+  background: #333333cc;
+  z-index: 999;
+  font-size: 1.5rem;
+}
+
+.timer .close {
+  position: absolute;
+  top: 2px;
+  right: 2px;
+  cursor: pointer;
+}
+
+.timer .title {
+  display: block;
+  font-size: 0.8rem;
+}
+
+.timer.done {
+  animation: ALARM 1s infinite;
+}
+
+@keyframes ALARM {
+  0%,
+  49% {
+    background-color: #ff0000cc;
+    border-color: #f00;
+  }
+  50%,
+  100% {
+    background-color: #333333cc;
+  }
+}
