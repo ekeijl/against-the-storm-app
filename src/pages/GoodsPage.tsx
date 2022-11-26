@@ -1,11 +1,5 @@
 import { useState, useMemo, useRef, useEffect } from "react";
-import * as THREE from "three";
-import SpriteText from "three-spritetext";
-import ForceGraph3D, {
-  ForceGraphMethods,
-  LinkObject,
-  NodeObject,
-} from "react-force-graph-3d";
+import ForceGraph3D, { ForceGraphMethods } from "react-force-graph-3d";
 
 import { useElementSize } from "usehooks-ts";
 
@@ -15,86 +9,19 @@ import { Stars } from "../components/Stars";
 import { Building, buildings, productsPerBuilding } from "../data/buildings";
 import { Page } from "../components/Page";
 import "./GoodsPage.css";
-import { Object3D } from "three";
-
-interface Amount {
-  id: string;
-  amount?: number;
-}
-interface Recipe {
-  ingredients: Amount[][];
-  product: Amount;
-  stars: number;
-}
-
-interface RecipeNode extends NodeObject {
-  group?: number;
-  id?: string | number;
-  name?: string;
-  isRecipe?: boolean;
-  amount?: number;
-}
-
-interface Link<T> extends Omit<LinkObject, "source"> {
-  source?: string | number | T;
-  group?: number;
-  amount?: number;
-}
+import {
+  getLinkColorBy,
+  getLinksForNodes,
+  getNodesForRecipe,
+  isNodeVisible,
+  nodeThreeObject,
+  Recipe,
+  renderLabel,
+  renderLink,
+  updateLink,
+} from "./GoodsPageUtil";
 
 type BuildingRecipeTuple = [Building, Recipe | undefined];
-
-const getNodesForRecipe = (recipe: Recipe) => {
-  const id = recipe.product.id;
-  let recipeNodes: RecipeNode[] = [];
-
-  // One node for the selected good type
-  recipeNodes.push({ id, name: id, group: -1, amount: 0 });
-
-  recipe.ingredients.forEach((goods, index) => {
-    // One node per "ingredient group"
-    recipeNodes.push({
-      id: `ingredient-${index}`,
-      group: index,
-      amount: 0,
-      isRecipe: true,
-    });
-
-    // One node for each ingredient of an ingredient group
-    goods.forEach((good) => {
-      recipeNodes.push({
-        ...good,
-        name: good.id,
-        amount: good.amount,
-        group: index,
-      });
-    });
-  });
-
-  return recipeNodes;
-};
-
-const getLinksForNodes = (goodId: string, nodes: RecipeNode[]) => {
-  let links: Link<string>[] = [];
-  nodes
-    .filter(({ group }) => group !== -1)
-    .forEach(({ id, isRecipe, group, amount }) => {
-      links.push(
-        isRecipe
-          ? {
-              source: `ingredient-${group}`,
-              target: goodId,
-              group,
-            }
-          : {
-              source: id,
-              target: `ingredient-${group}`,
-              amount: amount,
-              group,
-            }
-      );
-    });
-  return links;
-};
 
 const BuildingsForItem = ({
   buildings,
@@ -130,50 +57,6 @@ const BuildingsForItem = ({
       })}
     </div>
   );
-};
-
-const renderLink = (link: Link<RecipeNode>) => {
-  // extend link with text sprite
-  // https://github.com/vasturiano/react-force-graph/blob/master/example/text-links/index-3d.html
-  const recipeNode = link.source as RecipeNode;
-  const amount = recipeNode?.amount || 0;
-  const sprite = new SpriteText(String(amount));
-  sprite.color = "lightgrey";
-  sprite.textHeight = 5;
-  return sprite;
-};
-
-type Coords = { [x: string]: number };
-
-const updateLink = (
-  sprite: Object3D,
-  { start, end }: { start: Coords; end: Coords }
-) => {
-  const middlePos = Object.assign(
-    {},
-    ...["x", "y", "z"].map((c: string) => ({
-      [c]: start[c] + (end[c] - start[c]) / 2, // calc middle point
-    }))
-  );
-
-  // Position sprite
-  Object.assign(sprite.position, middlePos);
-
-  return null;
-};
-
-// render node as THREE.js object
-const nodeThreeObject = ({ id, isRecipe, group }: RecipeNode) => {
-  if (isRecipe) return new THREE.Object3D();
-
-  const imgTexture = new THREE.TextureLoader().load(`./img/goods/${id}.webp`);
-  const material = new THREE.SpriteMaterial({ map: imgTexture });
-  const sprite = new THREE.Sprite(material);
-
-  const scale = group === -1 ? 24 : 12;
-  sprite.scale.set(scale, scale, 1);
-
-  return sprite;
 };
 
 export const GoodsPage = () => {
@@ -239,19 +122,16 @@ export const GoodsPage = () => {
             ref={graphRef}
             width={width}
             height={height}
-            nodeVisibility={(node) => {
-              const recipeNode = node as RecipeNode;
-              return !recipeNode.isRecipe;
-            }}
+            nodeVisibility={isNodeVisible}
             nodeThreeObject={nodeThreeObject}
             onNodeClick={(node) => setBuilding(String(node.id))}
             linkThreeObjectExtend={true}
-            linkLabel={(link) => String((link as Link<RecipeNode>).amount)}
+            linkLabel={renderLabel}
             linkThreeObject={renderLink}
             linkPositionUpdate={updateLink}
             linkColor="rgba(200, 0, 0, 1)"
             linkWidth={1}
-            linkAutoColorBy={(link) => String((link as Link<RecipeNode>).group)}
+            linkAutoColorBy={getLinkColorBy}
             linkOpacity={0.5}
             numDimensions={2} // 2 -> flat (x,y) graph
             dagMode="zin" // Layout algorithm for the graph: td/bu/lr/rl/zout/zin/radialout/radialin
