@@ -252,12 +252,24 @@ export const cosmetics2 = {
   product: { id: "cosmetics", amount: 10 },
   stars: 2,
 };
-export const coal3 = {
+export const coal1 = {
   ingredients: [
     [
       {
         id: "wood",
         amount: 15,
+      },
+    ],
+  ],
+  product: { id: "coal", amount: 3 },
+  stars: 1,
+};
+export const coal3 = {
+  ingredients: [
+    [
+      {
+        id: "wood",
+        amount: 10,
       },
     ],
   ],
