@@ -2,6 +2,7 @@ import { useState, useRef, useEffect } from "react";
 import { BuildingsPage } from "./pages/BuildingsPage";
 import { GoodsPage } from "./pages/GoodsPage";
 import { Header } from "./components/Header";
+import { Footer } from "./components/Footer";
 import { useHash } from "./hooks/useHash";
 import "./styles.css";
 import { Timers } from "./components/Timers";
@@ -109,6 +110,7 @@ export default function App() {
         <Header onSetPage={setPage} onAddTimer={addTimer} />
         <Timers timers={timers} setTimers={setTimers} />
         {pageComponent}
+        <Footer />
       </div>
       <TimerModal
         show={showModal}
