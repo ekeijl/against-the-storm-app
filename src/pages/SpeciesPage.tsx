@@ -94,16 +94,6 @@ const SpeciesPage = () => {
     updateSpecies(new Set([...speciesSet]));
   };
 
-  // After selection changes, zoom in on the graph
-  useEffect(() => {
-    setTimeout(() => {
-      if (graphRef?.current) {
-        // params: animation time (ms), padding to edge (pixels)
-        graphRef.current.zoomToFit(1000, 1);
-      }
-    }, 500);
-  }, [graphRef]);
-
   const data = useMemo(() => {
     const species = { ...s };
     return getNodesForSpecies(species);
@@ -182,8 +172,12 @@ const SpeciesPage = () => {
             nodeVisibility={(node: SpeciesNode) => {
               return (
                 (node.group === 0 && speciesSet.has(String(node.id))) ||
-                (node.group === 1 && showFood) ||
-                (node.group === 2 && showServices)
+                (node.group === 1 &&
+                  showFood &&
+                  visibleNeeds.has(String(node.id))) ||
+                (node.group === 2 &&
+                  showServices &&
+                  visibleNeeds.has(String(node.id)))
               );
             }}
             nodeThreeObject={renderSpeciesObject}
@@ -204,6 +198,8 @@ const SpeciesPage = () => {
               );
             }}
             numDimensions={3} // 3D graph
+            cooldownTicks={100}
+            onEngineStop={() => graphRef?.current?.zoomToFit(400, 1)}
           />
         ) : (
           <p>No species!</p>
