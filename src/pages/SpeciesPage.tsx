@@ -128,7 +128,7 @@ const SpeciesPage = () => {
 
   // Need to reset the whole graph in order to recalculate node/link visibility
   const key = useMemo(
-    () => [...speciesSet.values(), showFood, showServices],
+    () => String([...speciesSet.values(), showFood, showServices]),
     [speciesSet, showFood, showServices]
   );
 
