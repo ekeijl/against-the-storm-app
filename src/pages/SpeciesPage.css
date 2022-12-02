@@ -1,0 +1,19 @@
+.species-toggles {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.species-toggles label {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.species-toggles label img {
+  height: 2rem;
+  aspect-ratio: 1 /1;
+}
+.species-graph {
+  flex: 0 1 100%;
+}

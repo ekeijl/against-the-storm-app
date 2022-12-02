@@ -1,3 +1,9 @@
 .page {
-    padding: 1rem;
+  padding: 1rem;
+}
+
+.page.full-height {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
 }

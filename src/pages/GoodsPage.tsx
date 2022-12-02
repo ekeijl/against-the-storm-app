@@ -59,7 +59,7 @@ const BuildingsForItem = ({
   );
 };
 
-export const GoodsPage = () => {
+const GoodsPage = () => {
   const graphRef = useRef<ForceGraphMethods>();
   const [good, setGood] = useState("ale");
 
@@ -102,7 +102,7 @@ export const GoodsPage = () => {
   }, [buildingId, good]);
 
   return (
-    <Page className="goods-page">
+    <Page className="goods-page" isFullHeight>
       <GoodsSelector
         value={good}
         onChange={(value: string) => setGood(value)}
@@ -143,3 +143,5 @@ export const GoodsPage = () => {
     </Page>
   );
 };
+
+export default GoodsPage;

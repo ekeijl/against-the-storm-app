@@ -10,6 +10,8 @@ Companion app for the game [Against the Storm](https://store.steampowered.com/ap
   - Select a group of buildings and show producable goods
 - Goods page
   - Show a network of related ingredients/products
+- Species page
+  - Shows the relation between species and their needs/specializations  
 - Set a timer to track in game events
 
 ## Develop
