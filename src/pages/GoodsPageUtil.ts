@@ -28,7 +28,7 @@ export interface Link<T> extends Omit<LinkObject, "source"> {
 
 export const getNodesForRecipe = (recipe: Recipe) => {
   const id = recipe.product.id;
-  let recipeNodes: RecipeNode[] = [];
+  const recipeNodes: RecipeNode[] = [];
 
   // One node for the selected good type
   recipeNodes.push({ id, name: id, group: -1, amount: 0 });
@@ -57,7 +57,7 @@ export const getNodesForRecipe = (recipe: Recipe) => {
 };
 
 export const getLinksForNodes = (goodId: string, nodes: RecipeNode[]) => {
-  let links: Link<string>[] = [];
+  const links: Link<string>[] = [];
   nodes
     .filter(({ group }) => group !== -1)
     .forEach(({ id, isRecipe, group, amount }) => {

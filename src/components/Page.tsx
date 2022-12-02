@@ -3,12 +3,21 @@ import classnames from "classnames";
 import "./Page.css";
 
 type PageProps = {
-	children: ReactNode;
-	className?: string;
+  children: ReactNode;
+  isFullHeight?: boolean;
+  className?: string;
 };
 
-export const Page = ({ children, className = "", ...props }: PageProps) => (
-	<div className={classnames("page", className)} {...props}>
-		{children}
-	</div>
+export const Page = ({
+  children,
+  isFullHeight = false,
+  className = "",
+  ...props
+}: PageProps) => (
+  <div
+    className={classnames("page", className, { "full-height": isFullHeight })}
+    {...props}
+  >
+    {children}
+  </div>
 );

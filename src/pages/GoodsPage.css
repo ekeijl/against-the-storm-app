@@ -1,9 +1,3 @@
-.goods-page {
-	display: flex;
-	flex-direction: column;
-	flex: 1;
-}
-
 .goods-page .goods-selector {
 	flex: 0;
 	margin-bottom: 1rem;
