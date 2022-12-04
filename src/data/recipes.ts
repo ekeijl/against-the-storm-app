@@ -875,7 +875,7 @@ export const pigment2 = {
     [
       { id: "insects", amount: 4 },
       { id: "berries", amount: 4 },
-      { id: "copper", amount: 4 },
+      { id: "copperOre", amount: 4 },
       { id: "coal", amount: 3 },
     ],
   ],
