@@ -3,12 +3,13 @@ import Select, { OnChangeValue } from "react-select";
 import { grouped } from "../data/goods";
 import { GoodsImage } from "./GoodsImage";
 import "./GoodsSelector.css";
+import { T } from "./T";
 
-const renderLabel = (value: string, label: ReactNode) => {
+const renderLabel = (value: string, label: string) => {
   return (
     <div className="goods-option">
       <GoodsImage id={value} size="small" />
-      {label ? <span>{label}</span> : null}
+      {label ? <T>{label}</T> : null}
     </div>
   );
 };
@@ -20,7 +21,7 @@ type MyOption = {
   label: any;
 };
 
-export const GoodsSelector = (props: any) => {
+export const GoodsSelector = (props: any): JSX.Element => {
   const { isMulti, onChange, value } = props;
 
   const handleMulti = (options: OnChangeValue<MyOption, true>) =>

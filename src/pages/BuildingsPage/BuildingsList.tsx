@@ -16,7 +16,7 @@ export const BuildingsList = ({
   selectedIds,
   stars,
   onSelect,
-}: BuildingListProps) => {
+}: BuildingListProps): JSX.Element => {
   const handleSelect = useCallback(
     (id: string) => {
       let ids;

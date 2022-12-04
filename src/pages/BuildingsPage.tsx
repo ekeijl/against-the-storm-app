@@ -6,7 +6,7 @@ import { BuildingsList } from "./BuildingsPage/BuildingsList";
 import { GoodsSummary } from "./BuildingsPage/GoodsSummary";
 import { Page } from "../components/Page";
 
-const BuildingsPage = () => {
+const BuildingsPage = (): JSX.Element => {
   const form = useForm<FiltersType>({
     defaultValues: {
       goodsType: "produces",

@@ -7,22 +7,21 @@ import { useEventListener } from "usehooks-ts";
  * @see https://www.kirupa.com/html5/drag.htm
  * @param {React.Ref} target
  */
-function useDraggable(target: RefObject<HTMLElement>) {
-  let [dragging, setDragging] = useState(false);
-  let [initialPos, setInitialPos] = useState([0, 0]);
-  let [position, setPosition] = useState([0, 0]);
+function useDraggable(target: RefObject<HTMLElement>): [x: number, y: number] {
+  const [dragging, setDragging] = useState(false);
+  const [initialPos, setInitialPos] = useState([0, 0]);
+  const [position, setPosition] = useState([0, 0]);
 
   const handleDragStart = (startEvent: Event) => {
     startEvent.preventDefault();
     setDragging(true);
 
-    let initialX, initialY;
-    let [xOffset, yOffset] = position;
+    const [xOffset, yOffset] = position;
 
-    let { clientX, clientY } = startEvent as MouseEvent;
+    const { clientX, clientY } = startEvent as MouseEvent;
 
-    initialX = clientX - xOffset;
-    initialY = clientY - yOffset;
+    const initialX = clientX - xOffset;
+    const initialY = clientY - yOffset;
 
     setInitialPos([initialX, initialY]);
   };
@@ -36,7 +35,7 @@ function useDraggable(target: RefObject<HTMLElement>) {
     if (dragging) {
       e.stopPropagation();
       e.preventDefault();
-      let [initialX, initialY] = initialPos;
+      const [initialX, initialY] = initialPos;
 
       const { clientX, clientY } = e as MouseEvent;
 
@@ -57,7 +56,7 @@ function useDraggable(target: RefObject<HTMLElement>) {
   useEventListener("touchend", handleDragEnd, target);
   useEventListener("touchmove", handleDragMove, target);
 
-  return position;
+  return position as [number, number];
 }
 
 export default useDraggable;

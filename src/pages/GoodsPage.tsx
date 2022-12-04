@@ -23,23 +23,25 @@ import {
 
 type BuildingRecipeTuple = [Building, Recipe | undefined];
 
+type BuildingsForItemProps = {
+  buildings: Building[];
+  itemId: string;
+  activeId?: string;
+  onSelect: (id: string) => void;
+}
+
 const BuildingsForItem = ({
   buildings,
   itemId,
   activeId,
   onSelect,
-}: {
-  buildings: Building[];
-  itemId: string;
-  activeId?: string;
-  onSelect: (id: string) => void;
-}) => {
+}: BuildingsForItemProps) => {
   const buildingsAndRecipe = useMemo(() => {
     return buildings
       .map((b: Building): BuildingRecipeTuple => {
         return [b, b.recipes.find((r) => r.product.id === itemId)];
       })
-      .sort(([_, r1], [__, r2]) => (r1 && r2 ? r1.stars - r2.stars : 0));
+      .sort(([, r1], [, r2]) => (r1 && r2 ? r1.stars - r2.stars : 0));
   }, [itemId, buildings]);
 
   return (
@@ -59,7 +61,7 @@ const BuildingsForItem = ({
   );
 };
 
-const GoodsPage = () => {
+const GoodsPage = (): JSX.Element => {
   const graphRef = useRef<ForceGraphMethods>();
   const [good, setGood] = useState("ale");
 

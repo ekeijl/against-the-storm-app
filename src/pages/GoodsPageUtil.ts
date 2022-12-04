@@ -26,7 +26,7 @@ export interface Link<T> extends Omit<LinkObject, "source"> {
   amount?: number;
 }
 
-export const getNodesForRecipe = (recipe: Recipe) => {
+export const getNodesForRecipe = (recipe: Recipe): RecipeNode[] => {
   const id = recipe.product.id;
   const recipeNodes: RecipeNode[] = [];
 
@@ -56,7 +56,7 @@ export const getNodesForRecipe = (recipe: Recipe) => {
   return recipeNodes;
 };
 
-export const getLinksForNodes = (goodId: string, nodes: RecipeNode[]) => {
+export const getLinksForNodes = (goodId: string, nodes: RecipeNode[]): Link<string>[] => {
   const links: Link<string>[] = [];
   nodes
     .filter(({ group }) => group !== -1)
@@ -79,7 +79,7 @@ export const getLinksForNodes = (goodId: string, nodes: RecipeNode[]) => {
   return links;
 };
 
-export const renderLink = (link: Link<RecipeNode>) => {
+export const renderLink = (link: Link<RecipeNode>): SpriteText => {
   // extend link with text sprite
   // https://github.com/vasturiano/react-force-graph/blob/master/example/text-links/index-3d.html
   const recipeNode = link.source as RecipeNode;
@@ -91,7 +91,7 @@ export const renderLink = (link: Link<RecipeNode>) => {
 };
 
 // render node as THREE.js object
-export const nodeThreeObject = ({ id, isRecipe, group }: RecipeNode) => {
+export const nodeThreeObject = ({ id, isRecipe, group }: RecipeNode): any => {
   if (isRecipe) return new THREE.Object3D();
 
   const imgTexture = new THREE.TextureLoader().load(`./img/goods/${id}.webp`);
@@ -109,7 +109,7 @@ type Coords = { [x: string]: number };
 export const updateLink = (
   sprite: any,
   { start, end }: { start: Coords; end: Coords }
-) => {
+): null => {
   const middlePos = Object.assign(
     {},
     ...["x", "y", "z"].map((c: string) => ({
@@ -123,15 +123,15 @@ export const updateLink = (
   return null;
 };
 
-export const isNodeVisible = (node: NodeObject) => {
+export const isNodeVisible = (node: NodeObject): boolean => {
   const recipeNode = node as RecipeNode;
   return !recipeNode.isRecipe;
 };
 
-export const renderLabel = (link: LinkObject) => {
+export const renderLabel = (link: LinkObject): string => {
   const recipeLink = link as Link<RecipeNode>;
   return String(recipeLink.amount);
 };
 
-export const getLinkColorBy = (link: LinkObject) =>
+export const getLinkColorBy = (link: LinkObject): string =>
   String((link as Link<RecipeNode>).group);

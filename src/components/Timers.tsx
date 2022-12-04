@@ -60,13 +60,15 @@ const TimerModal = ({ timer, setTime, onRemoveTimer }: TimerModalProps) => {
   );
 };
 
+type TimersProps = {
+  timers: Timer[];
+  setTimers: (timers: Timer[]) => void;
+};
+
 export const Timers = ({
   timers,
   setTimers,
-}: {
-  timers: Timer[];
-  setTimers: (timers: Timer[]) => void;
-}) => {
+}: TimersProps): JSX.Element => {
   const updateTimer = (id: number, time: number) => {
     setTimers(timers.map((t) => (t.id === id ? { ...t, time } : t)));
   };

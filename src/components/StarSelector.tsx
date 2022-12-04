@@ -18,15 +18,17 @@ const StarButton = ({
   </button>
 );
 
+type StarSelectorProps = {
+  value?: number;
+  name: string;
+  onChange: (stars?: number) => void;
+};
+
 export const StarSelector = ({
   value = 0,
   name,
   onChange,
-}: {
-  value?: number;
-  name: string;
-  onChange: (stars?: number) => void;
-}) => {
+}: StarSelectorProps): JSX.Element => {
   return (
     <fieldset name={name} className="stars-selector">
       <StarButton
