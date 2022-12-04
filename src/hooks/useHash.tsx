@@ -2,7 +2,7 @@ import { useState, useEffect, useCallback } from "react";
 
 const stripHash = (s: string) => s.replace("#", "");
 
-export const useHash = () => {
+export const useHash = (): [string | null, (hash: string) => void] => {
   const [hash, setHash] = useState<string | null>(() =>
     stripHash(window.location.hash)
   );

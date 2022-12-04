@@ -11,7 +11,7 @@
   aspect-ratio: 1 / 1;
   overflow: hidden;
   background: #000;
-  border: 3px outset #cfaf82;
+  border: 1px outset #cfaf82;
   vertical-align: middle;
 }
 
@@ -24,8 +24,8 @@
 
 .goods-image-nr {
   position: absolute;
-  bottom: 5px;
-  right: 5px;
+  bottom: 0px;
+  right: 2px;
   font-size: 1.3rem;
   text-shadow: 2px 2px #000;
 }

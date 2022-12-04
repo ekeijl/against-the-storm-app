@@ -2,15 +2,17 @@
 import { useState, useRef, useEffect } from "react";
 import { useEventListener, useOnClickOutside } from "usehooks-ts";
 
+type TimerModalProps = {
+  show: boolean;
+  onCancel: () => void;
+  onOk: (name: string, time: number) => void;
+};
+
 export const TimerModal = ({
   show,
   onOk,
   onCancel,
-}: {
-  show: boolean;
-  onCancel: () => void;
-  onOk: (name: string, time: number) => void;
-}) => {
+}: TimerModalProps): JSX.Element => {
   const dialogRef = useRef<HTMLDialogElement>(null);
   const timeRef = useRef<HTMLInputElement>(null);
   const [name, setName] = useState("Timer");

@@ -1,4 +1,4 @@
-import { useState, useMemo, useRef, useEffect } from "react";
+import { useState, useMemo, useRef } from "react";
 import Toggle from "react-toggle";
 import * as THREE from "three";
 import ForceGraph3D, {
@@ -75,7 +75,7 @@ const Species = ({ type }: { type: string }) => (
   <img src={`img/species/${type}.png`} alt={type} />
 );
 
-const SpeciesPage = () => {
+const SpeciesPage = (): JSX.Element => {
   const graphRef = useRef<ForceGraphMethods>();
 
   const [containerRef, { width, height }] = useElementSize();

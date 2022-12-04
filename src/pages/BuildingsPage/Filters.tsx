@@ -12,13 +12,15 @@ export type FiltersType = {
   onlySelected?: boolean;
 };
 
+type FiltersProps = {
+  form: UseFormReturn<FiltersType>;
+  selectedIds: string[];
+}
+
 export const Filters = ({
   form,
   selectedIds,
-}: {
-  form: UseFormReturn<FiltersType>;
-  selectedIds: string[];
-}) => {
+}: FiltersProps): JSX.Element => {
   const { register, control, reset } = form;
 
   return (

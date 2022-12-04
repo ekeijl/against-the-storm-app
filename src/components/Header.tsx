@@ -1,12 +1,10 @@
 import "./Header.css";
 
-export const Header = ({
-  onSetPage,
-  onAddTimer,
-}: {
+type HeaderProps = {
   onSetPage: (page: string) => void;
   onAddTimer: () => void;
-}) => {
+};
+export const Header = ({ onSetPage, onAddTimer }: HeaderProps): JSX.Element => {
   return (
     <header>
       <h1>Against the Storm companion</h1>

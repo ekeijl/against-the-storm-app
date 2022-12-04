@@ -3,13 +3,15 @@ import "./GoodsSummary.css";
 import { productsPerBuilding } from "../../data/buildings";
 import { GoodsImage } from "../../components/GoodsImage";
 
+type GoodsSummaryProps = {
+  buildingIds: string[];
+  onSelect: (id: string) => void;
+}
+
 export const GoodsSummary = ({
   buildingIds,
   onSelect,
-}: {
-  buildingIds: string[];
-  onSelect: (id: string) => void;
-}) => {
+}: GoodsSummaryProps): JSX.Element | null => {
   const productIds = useMemo(() => {
     const allIds = buildingIds?.flatMap((id: string) =>
       Array.from(productsPerBuilding.get(id) || [])

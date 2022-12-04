@@ -51,7 +51,7 @@ const Recipe = ({ recipe }: { recipe: RecipeType }) => {
   );
 };
 
-export const Building = ({ building, stars }: BuildingProps) => {
+export const Building = ({ building, stars }: BuildingProps): JSX.Element => {
   const recipes = stars
     ? building.recipes.filter((r) => r.stars === stars)
     : building.recipes;
