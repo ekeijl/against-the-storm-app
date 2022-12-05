@@ -1,8 +1,10 @@
+import { useCallback } from "react";
 import { Controller, UseFormReturn } from "react-hook-form";
 import { StarSelector } from "../../components/StarSelector";
 import { GoodsSelector } from "../../components/GoodsSelector";
 import Toggle from "react-toggle";
 import "./Filters.css";
+import { useKeyPress } from "../../hooks/useKeyPress";
 
 export type FiltersType = {
   name?: string;
@@ -15,13 +17,20 @@ export type FiltersType = {
 type FiltersProps = {
   form: UseFormReturn<FiltersType>;
   selectedIds: string[];
-}
+};
 
-export const Filters = ({
-  form,
-  selectedIds,
-}: FiltersProps): JSX.Element => {
-  const { register, control, reset } = form;
+export const Filters = ({ form, selectedIds }: FiltersProps): JSX.Element => {
+  const { register, control, reset, setFocus } = form;
+
+  const focusSelect = useCallback(
+    (e: KeyboardEvent) => {
+      e.preventDefault();
+      setFocus("name");
+    },
+    [setFocus]
+  );
+
+  useKeyPress(focusSelect, ["Slash"]);
 
   return (
     <form onSubmit={(e) => e.preventDefault()} className="filters">
@@ -29,7 +38,7 @@ export const Filters = ({
         <input
           className="filter-text"
           type="text"
-          placeholder="Building name"
+          placeholder="Building name (type /)"
           {...register("name")}
         />
       </div>
