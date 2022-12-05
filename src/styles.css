@@ -11,6 +11,23 @@
 ::selection {
   background: var(--highlight-color);
 }
+
+/** Set outline for multiple elements */
+:is(a, button, input, textarea, summary) {
+  --outline-size: max(2px, 0.08em);
+  --outline-style: solid;
+  --outline-color: var(--highlight-color);
+}
+
+:is(a, button, input, textarea, summary):focus {
+  outline: var(--outline-size) var(--outline-style) var(--outline-color);
+  outline-offset: var(--outline-offset, var(--outline-size));
+}
+:is(a, button, input, textarea, summary):focus-visible {
+  outline: var(--outline-size) var(--outline-style) var(--outline-color);
+  outline-offset: var(--outline-offset, var(--outline-size));
+}
+
 html {
   background: radial-gradient(ellipse at center, #013015 0%, #000000 50%);
   background-color: #000;
@@ -82,8 +99,8 @@ button:hover {
 }
 
 input[type="text"] {
-  background: #fff;
-  color: #000;
+  background: #222;
+  color: #fff;
 }
 input[type="checkbox"],
 input[type="radio"] {
@@ -142,13 +159,16 @@ input[type="checkbox"]:checked::before,
 input[type="radio"]:checked::before {
   transform: scale(1);
 }
-
 input[type="checkbox"]:focus,
 input[type="radio"]:focus {
   outline: max(2px, 0.15em) solid var(--highlight-color);
   outline-offset: max(2px, 0.15em);
 }
 
+input[type="checkbox"]:hover,
+input[type="radio"]:hover {
+  background: #2d6197;
+}
 input[type="checkbox"]:disabled,
 input[type="radio"]:disabled {
   --form-control-color: var(--form-control-disabled);
