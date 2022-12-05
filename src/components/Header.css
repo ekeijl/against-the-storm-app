@@ -1,7 +1,7 @@
 header {
   padding: 1rem;
   font-weight: bold;
-  background: var(--header-bg-color);
+  background: var(--bar-bg-color);
 
   display: flex;
   align-items: center;

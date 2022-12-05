@@ -1,5 +1,5 @@
 import { useState, useMemo, useRef } from "react";
-import Toggle from "react-toggle";
+import { Toggle } from "../components/Toggle";
 import * as THREE from "three";
 import ForceGraph3D, {
   ForceGraphMethods,
