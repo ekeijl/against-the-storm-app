@@ -1,7 +1,8 @@
 import { useState, useMemo, useRef } from "react";
 import { Toggle } from "../components/Toggle";
 import * as THREE from "three";
-import ForceGraph3D, {
+import ForceGraph3D from "react-force-graph-3d";
+import type {
   ForceGraphMethods,
   LinkObject,
   NodeObject,
@@ -12,7 +13,6 @@ import { useElementSize } from "usehooks-ts";
 import * as s from "../data/species";
 import { Page } from "../components/Page";
 import "./SpeciesPage.css";
-import { getLinkColorBy } from "./GoodsPageUtil";
 
 interface Species {
   id: string;
