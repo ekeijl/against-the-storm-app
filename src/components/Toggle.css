@@ -1,0 +1,11 @@
+.toggle.react-toggle:hover:not(.react-toggle--disabled) .react-toggle-track {
+  background-color: var(--btn-hover-color);
+}
+
+.toggle:is(
+    .react-toggle--focus,
+    .react-toggle:active:not(.react-toggle--disabled)
+  )
+  .react-toggle-thumb {
+  box-shadow: 0 0 0 2px var(--highlight-color);
+}

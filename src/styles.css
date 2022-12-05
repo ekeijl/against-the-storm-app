@@ -4,7 +4,9 @@
   --highlight-color-light: #d83a2f;
   --border-color: #ad9d78;
 
-  --header-bg-color: #222;
+  --bar-bg-color: #222222aa;
+  --btn-hover-color: #666;
+
   --form-control-color: #0ec9f4;
   --form-control-disabled: #959495;
 }
@@ -95,7 +97,7 @@ button {
   border-radius: var(--border-radius);
 }
 button:hover {
-  background-color: #666;
+  background-color: var(--btn-hover-color);
   cursor: pointer;
 }
 

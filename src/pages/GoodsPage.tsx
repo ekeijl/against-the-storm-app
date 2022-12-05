@@ -1,5 +1,6 @@
 import { useState, useMemo, useRef, useEffect } from "react";
-import ForceGraph3D, { ForceGraphMethods } from "react-force-graph-3d";
+import ForceGraph3D from "react-force-graph-3d";
+import type { ForceGraphMethods } from "react-force-graph-3d";
 
 import { useElementSize } from "usehooks-ts";
 

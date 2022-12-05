@@ -2,7 +2,7 @@ import { useCallback } from "react";
 import { Controller, UseFormReturn } from "react-hook-form";
 import { StarSelector } from "../../components/StarSelector";
 import { GoodsSelector } from "../../components/GoodsSelector";
-import Toggle from "react-toggle";
+import { Toggle } from "../../components/Toggle";
 import "./Filters.css";
 import { useKeyPress } from "../../hooks/useKeyPress";
 
