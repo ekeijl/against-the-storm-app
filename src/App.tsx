@@ -5,6 +5,7 @@ import { useHash } from "./hooks/useHash";
 import { Timers } from "./components/Timers";
 import { TimerModal } from "./components/TimerModal";
 import { Timer } from "./types/Timer";
+import { Loader } from "./components/Loader";
 import "./styles.css";
 
 // Lazy load pages to improve loading time
@@ -49,10 +50,11 @@ export default function App() {
       <div className="App">
         <Header onSetPage={setPage} onAddTimer={addTimer} />
 
-        <Suspense fallback="Loading...">
+        <Suspense fallback={<Loader />}>
           <Timers timers={timers} setTimers={setTimers} />
           {pageComponent}
         </Suspense>
+
         <Footer />
       </div>
       <TimerModal

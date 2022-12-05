@@ -179,6 +179,7 @@ const SpeciesPage = (): JSX.Element => {
             ref={graphRef}
             width={width}
             height={height}
+            backgroundColor="rgb(0,0,0,0.5)"
             nodeVisibility={(node: SpeciesNode) => {
               return (
                 (node.group === 0 && speciesSet.has(String(node.id))) ||
