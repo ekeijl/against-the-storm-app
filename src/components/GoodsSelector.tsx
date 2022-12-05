@@ -58,7 +58,7 @@ export const GoodsSelector = (props: any): JSX.Element => {
           // primary25:
           // danger:
           // dangerLight;
-          neutral0: "#111", // main input bg
+          neutral0: "#222", // main input bg
           neutral5: "#010101", // disabled
           neutral10: "#444", // multi-select item
           neutral20: "#555", // outer border, clear, chevron

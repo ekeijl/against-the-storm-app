@@ -1,20 +1,25 @@
 .goods-page .goods-selector {
-	flex: 0;
-	margin-bottom: 1rem;
+  flex: 0 0 40ch;
 }
 
 .goods-page .goods-graph {
-	flex: 0 1 100%;
+  flex: 0 1 100%;
+  margin-top: 1rem;
+}
+
+.goods-filters {
+  display: flex;
+  gap: 1rem;
 }
 
 .buildings-for-item {
-	display: flex;
-	gap: 0.5rem;
+  display: flex;
+  gap: 0.5rem;
 }
 .buildings-for-item .active {
-	background-color: var(--highlight-color);
+  background-color: var(--highlight-color);
 }
 
 .buildings-for-item .active:hover {
-	background-color: var(--highlight-color-light);
+  background-color: var(--highlight-color-light);
 }

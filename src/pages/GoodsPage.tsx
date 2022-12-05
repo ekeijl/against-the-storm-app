@@ -5,6 +5,7 @@ import { useElementSize } from "usehooks-ts";
 
 import { GoodsSelector } from "../components/GoodsSelector";
 import { Stars } from "../components/Stars";
+import { T } from "../components/T";
 
 import { Building, buildings, productsPerBuilding } from "../data/buildings";
 import { Page } from "../components/Page";
@@ -28,7 +29,7 @@ type BuildingsForItemProps = {
   itemId: string;
   activeId?: string;
   onSelect: (id: string) => void;
-}
+};
 
 const BuildingsForItem = ({
   buildings,
@@ -53,7 +54,7 @@ const BuildingsForItem = ({
             onClick={() => onSelect(b.id)}
             className={b.id === activeId ? "active" : ""}
           >
-            {b.id} <Stars nr={r?.stars} />
+            <T>{b.id}</T> <Stars nr={r?.stars} />
           </button>
         );
       })}
@@ -105,17 +106,19 @@ const GoodsPage = (): JSX.Element => {
 
   return (
     <Page className="goods-page" isFullHeight>
-      <GoodsSelector
-        value={good}
-        onChange={(value: string) => setGood(value)}
-      />
+      <div className="goods-filters">
+        <GoodsSelector
+          value={good}
+          onChange={(value: string) => setGood(value)}
+        />
 
-      <BuildingsForItem
-        itemId={good}
-        buildings={buildingsForItem}
-        activeId={buildingId}
-        onSelect={setBuilding}
-      />
+        <BuildingsForItem
+          itemId={good}
+          buildings={buildingsForItem}
+          activeId={buildingId}
+          onSelect={setBuilding}
+        />
+      </div>
 
       <div className="goods-graph" ref={containerRef}>
         {data ? (
@@ -124,6 +127,7 @@ const GoodsPage = (): JSX.Element => {
             ref={graphRef}
             width={width}
             height={height}
+            backgroundColor="rgb(0,0,0,0.5)"
             nodeVisibility={isNodeVisible}
             nodeThreeObject={nodeThreeObject}
             onNodeClick={(node) => setBuilding(String(node.id))}

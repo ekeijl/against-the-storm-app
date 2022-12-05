@@ -29,10 +29,11 @@
 }
 
 html {
-  background: radial-gradient(ellipse at center, #013015 0%, #000000 50%);
-  background-color: #000;
+  background-image: url("img/bg-textured.jpg"), url("img/bg-gradient2.svg");
+  background-attachment: fixed;
+  background-blend-mode: soft-light;
   background-repeat: no-repeat;
-  background-size: 100%;
+  background-size: cover;
 }
 body {
   font-family: "Roboto", "Helvetica", sans-serif;
