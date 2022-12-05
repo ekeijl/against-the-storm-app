@@ -13,6 +13,7 @@
 .species-toggles label img {
   height: 2rem;
   aspect-ratio: 1 /1;
+  border-radius: 50%;
 }
 .species-graph {
   flex: 0 1 100%;

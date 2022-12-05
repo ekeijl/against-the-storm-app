@@ -15,10 +15,12 @@ import "./SpeciesPage.css";
 import { getLinkColorBy } from "./GoodsPageUtil";
 
 interface Species {
+  id: string;
   specialization: string;
   resolve: string;
   needs: string[];
   services: string[];
+  color: string;
 }
 export interface SpeciesNode extends NodeObject {
   group?: number;
@@ -30,6 +32,7 @@ export interface Link extends Omit<LinkObject, "source"> {
   source?: string | number;
   group?: number;
   amount?: number;
+  color: string;
 }
 
 const getNodesForSpecies = (species: Record<string, Species>) => {
@@ -39,7 +42,7 @@ const getNodesForSpecies = (species: Record<string, Species>) => {
   const needsSet = new Set<string>();
   const servicesSet = new Set<string>();
 
-  Object.entries(species).forEach(([species, { needs, services }]) => {
+  Object.entries(species).forEach(([species, { needs, services, color }]) => {
     speciesNodes.push({ id: species, group: 0 });
 
     needs.forEach((need) => {
@@ -48,6 +51,7 @@ const getNodesForSpecies = (species: Record<string, Species>) => {
         source: species,
         target: need,
         group: 1,
+        color,
       });
     });
     services.forEach((service) => {
@@ -56,6 +60,7 @@ const getNodesForSpecies = (species: Record<string, Species>) => {
         source: species,
         target: service,
         group: 2,
+        color,
       });
     });
   });
@@ -71,8 +76,13 @@ const getNodesForSpecies = (species: Record<string, Species>) => {
   return { nodes: speciesNodes, links: speciesLinks };
 };
 
-const Species = ({ type }: { type: string }) => (
-  <img src={`img/species/${type}.png`} alt={type} />
+const Species = ({ species: { id, color } }: { species: Species }) => (
+  <img
+    src={`img/species/${id}.png`}
+    alt={id}
+    title={id}
+    style={{ border: `2px solid ${color}` }}
+  />
 );
 
 const SpeciesPage = (): JSX.Element => {
@@ -137,13 +147,13 @@ const SpeciesPage = (): JSX.Element => {
   return (
     <Page className="species-page" isFullHeight>
       <div className="species-toggles">
-        {Object.keys(s).map((species) => (
-          <label key={species}>
+        {Object.values(s).map((species) => (
+          <label key={species.id}>
             <Toggle
-              checked={speciesSet.has(species)}
-              onChange={() => toggleSpecies(species)}
+              checked={speciesSet.has(species.id)}
+              onChange={() => toggleSpecies(species.id)}
             />
-            <Species type={species} />
+            <Species species={species} />
           </label>
         ))}
 
@@ -181,9 +191,8 @@ const SpeciesPage = (): JSX.Element => {
               );
             }}
             nodeThreeObject={renderSpeciesObject}
-            linkColor="rgba(200, 0, 0, 1)"
+            linkColor={(link) => (link as Link).color}
             linkCurvature={0.3}
-            linkAutoColorBy={getLinkColorBy}
             linkOpacity={0.5}
             linkVisibility={(link: any) => {
               if (
