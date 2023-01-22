@@ -24,15 +24,15 @@ const BuildingsPage = (): JSX.Element => {
     const { name, stars, goods, goodsType, onlySelected } = filters;
 
     return buildings.filter(
-      (b) =>
-        (!name || b.id.includes(name)) &&
-        (!stars || b.recipes.some((r) => r.stars === stars)) &&
+      ({ id, recipes = [] }) =>
+        (!name || id.includes(name)) &&
+        (!stars || recipes.some((r) => r.stars === stars)) &&
         (!goods?.length ||
           (goodsType === "produces" &&
-            b.recipes.some((r) => goods.includes(r.product.id))) ||
+            recipes.some((r) => goods.includes(r.product.id))) ||
           (goodsType === "ingredient" &&
-            goods.every((g) => ingredientsPerBuilding.get(b.id)?.has(g)))) &&
-        (!onlySelected || selectedIds.includes(b.id))
+            goods.every((g) => ingredientsPerBuilding.get(id)?.has(g)))) &&
+        (!onlySelected || selectedIds.includes(id))
     );
   }, [filters, selectedIds]);
 

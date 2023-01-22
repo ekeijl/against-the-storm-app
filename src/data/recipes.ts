@@ -777,14 +777,28 @@ export const packOfTradeGoods1 = {
     [
       { id: "pigment", amount: 8 },
       { id: "oil", amount: 8 },
-      { id: "flour", amount: 8 },
-      { id: "pottery", amount: 8 },
-      { id: "barrels", amount: 8 },
-      { id: "waterskins", amount: 8 },
+      { id: "flour", amount: 6 },
+      { id: "pottery", amount: 6 },
+      { id: "barrels", amount: 6 },
+      { id: "waterskins", amount: 6 },
     ],
   ],
   product: { id: "packOfTradeGoods", amount: 2 },
   stars: 1,
+};
+export const packOfTradeGoods2 = {
+  ingredients: [
+    [
+      { id: "pigment", amount: 6 },
+      { id: "oil", amount: 6 },
+      { id: "flour", amount: 4 },
+      { id: "pottery", amount: 4 },
+      { id: "barrels", amount: 4 },
+      { id: "waterskins", amount: 4 },
+    ],
+  ],
+  product: { id: "packOfTradeGoods", amount: 2 },
+  stars: 2,
 };
 export const pickledGoods0 = {
   ingredients: [
@@ -868,6 +882,16 @@ export const pie3 = {
   ],
   product: { id: "pie", amount: 10 },
   stars: 3,
+};
+export const pipes0 = {
+  ingredients: [[{ id: "copperBars", amount: 5 }]],
+  product: { id: "pipes", amount: 2 },
+  stars: 0,
+};
+export const pipes2 = {
+  ingredients: [[{ id: "copperBars", amount: 2 }]],
+  product: { id: "pipes", amount: 2 },
+  stars: 2,
 };
 
 export const pigment2 = {

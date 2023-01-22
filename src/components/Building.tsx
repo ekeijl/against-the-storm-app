@@ -51,17 +51,20 @@ const Recipe = ({ recipe }: { recipe: RecipeType }) => {
   );
 };
 
-export const Building = ({ building, stars }: BuildingProps): JSX.Element => {
-  const recipes = stars
-    ? building.recipes.filter((r) => r.stars === stars)
-    : building.recipes;
-  const products = recipes.map((r) => r.product);
+export const Building = ({
+  building: { recipes = [], id },
+  stars,
+}: BuildingProps): JSX.Element => {
+  const filteredRecipes = stars
+    ? recipes?.filter((r) => r.stars === stars)
+    : recipes;
+  const products = recipes?.map((r) => r.product) ?? [];
 
   return (
     <details className="building">
       <summary className="building-title">
         {/* <img src={`img/buildings/${building.id}.png`} /> */}
-        <T>{building.id}</T>
+        <T>{id}</T>
         <span className="building-products">
           {products.map((p) => (
             <GoodsImage size="small" type="square" key={p.id} id={p.id} />
@@ -69,10 +72,10 @@ export const Building = ({ building, stars }: BuildingProps): JSX.Element => {
         </span>
       </summary>
       <div className="building-recipes">
-        {building.recipes.map((r, index) => (
+        {filteredRecipes.map((r, index) => (
           <Recipe recipe={r} key={index} />
         ))}
-        {building.recipes.length === 0 ? <p>Building has no recipes!</p> : ""}
+        {recipes.length === 0 ? <p>Building has no recipes!</p> : ""}
       </div>
     </details>
   );
