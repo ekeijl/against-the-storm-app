@@ -18,7 +18,7 @@ interface Service {
 export interface Building {
   id: string;
   cost: Amount[];
-  recipes: Recipe[];
+  recipes?: Recipe[];
   services?: Service[];
   specialization: string[];
 }
@@ -200,7 +200,7 @@ export const buildings: Building[] = [
     id: "crudeWorkstation",
     specialization: [],
     cost: [{ id: "wood", amount: 5 }],
-    recipes: [r.planks0, r.fabric0, r.bricks0],
+    recipes: [r.planks0, r.fabric0, r.bricks0, r.pipes0],
   },
 
   {
@@ -265,6 +265,14 @@ export const buildings: Building[] = [
       { id: "bricks", amount: 2 },
     ],
     recipes: [r.copperBars2, r.bricks2, r.pie2],
+  },
+  {
+    id: "geyserPump",
+    specialization: ["engineering"],
+    cost: [
+      { id: "planks", amount: 6 },
+      { id: "pipes", amount: 4 },
+    ],
   },
   {
     id: "granary",
@@ -509,7 +517,7 @@ export const buildings: Building[] = [
     id: "smelter",
     specialization: ["warmth"],
     cost: [{ id: "bricks", amount: 4 }],
-    recipes: [r.copperBars3, r.crystal1, r.biscuits1],
+    recipes: [r.copperBars3, r.pipes2, r.biscuits1],
   },
   {
     id: "smithy",
@@ -518,7 +526,7 @@ export const buildings: Building[] = [
       { id: "planks", amount: 5 },
       { id: "bricks", amount: 2 },
     ],
-    recipes: [r.simpleTools2, r.coats2, r.packOfLuxuryGoods2],
+    recipes: [r.simpleTools2, r.coats2, r.packOfTradeGoods2],
   },
   {
     id: "smokehouse",
@@ -601,7 +609,7 @@ export const buildings: Building[] = [
       { id: "planks", amount: 5 },
       { id: "fabric", amount: 2 },
     ],
-    recipes: [r.simpleTools3, r.barrels1, r.waterskins1],
+    recipes: [r.simpleTools3, r.pipes2, r.barrels1],
   },
   {
     id: "tradingPost",
@@ -632,7 +640,7 @@ export const buildings: Building[] = [
     id: "weaver",
     specialization: ["cloth"],
     cost: [{ id: "planks", amount: 8 }],
-    recipes: [r.fabric3, r.trainingGear1, r.packOfLuxuryGoods1],
+    recipes: [r.fabric3, r.trainingGear1, r.packOfTradeGoods1],
   },
   {
     id: "woodcuttersCamp",
@@ -654,11 +662,12 @@ export const buildings: Building[] = [
 
 // [id, Set(...ingredients)]]
 const ingredientTuples: [string, Set<string>][] = buildings.map((b) => {
-  const ingredients = b.recipes.map((r) => {
-    return r.ingredients.map((i) => {
-      return i.map((p) => p.id);
-    });
-  });
+  const ingredients =
+    b.recipes?.map((r) => {
+      return r.ingredients.map((i) => {
+        return i.map((p) => p.id);
+      });
+    }) ?? [];
 
   return [b.id, new Set<string>(ingredients.flat(2))];
 });
@@ -670,7 +679,7 @@ export const ingredientsPerBuilding = new Map<string, Set<string>>(
 );
 
 const productTuples: [string, Set<string>][] = buildings.map((b) => {
-  const products = b.recipes.map((r) => r.product.id);
+  const products = b.recipes?.map((r) => r.product.id) ?? [];
 
   return [b.id, new Set<string>(products)];
 });

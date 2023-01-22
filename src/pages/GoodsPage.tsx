@@ -41,7 +41,7 @@ const BuildingsForItem = ({
   const buildingsAndRecipe = useMemo(() => {
     return buildings
       .map((b: Building): BuildingRecipeTuple => {
-        return [b, b.recipes.find((r) => r.product.id === itemId)];
+        return [b, b?.recipes?.find((r) => r.product.id === itemId)];
       })
       .sort(([, r1], [, r2]) => (r1 && r2 ? r1.stars - r2.stars : 0));
   }, [itemId, buildings]);
@@ -95,7 +95,9 @@ const GoodsPage = (): JSX.Element => {
     if (!buildingId || !buildings) return null;
 
     const building = buildings?.find(({ id }) => id === buildingId);
-    const recipe = building?.recipes.find(({ product: { id } }) => id === good);
+    const recipe = building?.recipes?.find(
+      ({ product: { id } }) => id === good
+    );
 
     if (!recipe) return null;
 

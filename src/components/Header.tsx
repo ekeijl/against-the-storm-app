@@ -1,4 +1,5 @@
 import "./Header.css";
+import { VERSION } from "../constants";
 
 type HeaderProps = {
   onSetPage: (page: string) => void;
@@ -13,7 +14,7 @@ export const Header = ({ onSetPage, onAddTimer }: HeaderProps): JSX.Element => {
       <button onClick={() => onSetPage("goods")}>Goods</button>
       <button onClick={() => onSetPage("species")}>Species</button>
       <button onClick={() => onAddTimer()}>⏰ Timer</button>
-      <span>v0.38.3</span>
+      <span>v{VERSION}</span>
     </header>
   );
 };
