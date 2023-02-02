@@ -19,9 +19,11 @@ export const consumable = [
 export const crafting = [
   "barrels",
   "clay",
+  "clearanceWater",
   "copperBars",
   "copperOre",
   "crystalizedDew",
+  "drizzleWater",
   "flour",
   "grain",
   "herbs",
@@ -32,8 +34,8 @@ export const crafting = [
   "pottery",
   "reed",
   "resin",
-  "sparkdew",
   "stone",
+  "stormWater",
   "waterskins",
 ];
 

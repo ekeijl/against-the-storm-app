@@ -2,7 +2,7 @@ export const amber3 = {
   ingredients: [
     [{ id: "resin", amount: 3 }],
     [
-      { id: "sparkdew", amount: 3 },
+      { id: "clearanceWater", amount: 10 },
       { id: "oil", amount: 1 },
     ],
   ],
@@ -169,16 +169,16 @@ export const bricks2 = {
   product: { id: "bricks", amount: 2 },
   stars: 2,
 };
-export const bricksA2 = {
+export const clay = {
   ingredients: [
     [
       {
-        id: "sparkdew",
+        id: "clearanceWater",
         amount: 4,
       },
     ],
   ],
-  product: { id: "bricks", amount: 4 },
+  product: { id: "clay", amount: 4 },
   stars: 2,
 };
 
@@ -313,26 +313,6 @@ export const coats3 = {
   product: { id: "coats", amount: 10 },
   stars: 3,
 };
-export const crystal1 = {
-  ingredients: [
-    [
-      { id: "herbs", amount: 3 },
-      { id: "insects", amount: 3 },
-      { id: "resin", amount: 3 },
-      { id: "vegetables", amount: 3 },
-    ],
-    [
-      { id: "stone", amount: 4 },
-      { id: "clay", amount: 4 },
-    ],
-    [{ id: "sparkdew", amount: 6 }],
-  ],
-  product: {
-    id: "crystalizedDew",
-    amount: 2,
-  },
-  stars: 1,
-};
 export const crystal2 = {
   ingredients: [
     [
@@ -345,7 +325,11 @@ export const crystal2 = {
       { id: "stone", amount: 3 },
       { id: "clay", amount: 3 },
     ],
-    [{ id: "sparkdew", amount: 6 }],
+    [
+      { id: "stormWater", amount: 8 },
+      { id: "clearanceWater", amount: 12 },
+      { id: "drizzleWater", amount: 16 },
+    ],
   ],
   product: {
     id: "crystalizedDew",
@@ -462,7 +446,7 @@ export const herbs2 = {
   ingredients: [
     [
       {
-        id: "sparkdew",
+        id: "drizzleWater",
         amount: 4,
       },
     ],
@@ -517,7 +501,11 @@ export const infusedTools3 = {
       { id: "copperBars", amount: 2 },
       { id: "crystalizedDew", amount: 2 },
     ],
-    [{ id: "sparkdew", amount: 4 }],
+    [
+      { id: "stormWater", amount: 8 },
+      { id: "clearanceWater", amount: 12 },
+      { id: "drizzleWater", amount: 16 },
+    ],
   ],
   stars: 3,
 };
@@ -613,7 +601,7 @@ export const mushrooms2 = {
   ingredients: [
     [
       {
-        id: "sparkdew",
+        id: "drizzleWater",
         amount: 4,
       },
     ],
@@ -884,12 +872,22 @@ export const pie3 = {
   stars: 3,
 };
 export const pipes0 = {
-  ingredients: [[{ id: "copperBars", amount: 5 }]],
+  ingredients: [
+    [
+      { id: "copperBars", amount: 3 },
+      { id: "crystalizedDew", amount: 3 },
+    ],
+  ],
   product: { id: "pipes", amount: 2 },
   stars: 0,
 };
 export const pipes2 = {
-  ingredients: [[{ id: "copperBars", amount: 2 }]],
+  ingredients: [
+    [
+      { id: "copperBars", amount: 2 },
+      { id: "crystalizedDew", amount: 2 },
+    ],
+  ],
   product: { id: "pipes", amount: 2 },
   stars: 2,
 };
@@ -965,7 +963,7 @@ export const reedA2 = {
   ingredients: [
     [
       {
-        id: "sparkdew",
+        id: "clearanceWater",
         amount: 4,
       },
     ],

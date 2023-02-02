@@ -163,7 +163,7 @@ export const buildings: Building[] = [
       { id: "planks", amount: 2 },
       { id: "fabric", amount: 2 },
     ],
-    recipes: [r.bricksA2, r.reedA2],
+    recipes: [r.clay, r.reedA2],
   },
 
   {
