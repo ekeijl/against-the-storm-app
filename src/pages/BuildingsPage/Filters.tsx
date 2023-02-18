@@ -2,22 +2,47 @@ import { useCallback } from "react";
 import { Controller, UseFormReturn } from "react-hook-form";
 import { StarSelector } from "../../components/StarSelector";
 import { GoodsSelector } from "../../components/GoodsSelector";
+import { Select } from "../../components/Select";
 import { Toggle } from "../../components/Toggle";
 import "./Filters.css";
 import { useKeyPress } from "../../hooks/useKeyPress";
+import { Specialization } from "../../components/Specialization";
+import { Option } from "../../types/Option";
 
 export type FiltersType = {
-  name?: string;
-  stars?: number;
+  name: string;
+  stars: number;
   goodsType: "produces" | "ingredient";
-  goods?: string[];
-  onlySelected?: boolean;
+  goods: string[];
+  specialization: string;
+  onlySelected: boolean;
 };
 
 type FiltersProps = {
-  form: UseFormReturn<FiltersType>;
+  form: UseFormReturn<Partial<FiltersType>>;
   selectedIds: string[];
 };
+
+const renderSpecOption = (value: string, label: string) => {
+  return value ? (
+    <div className="specialization-option">
+      <Specialization>{value}</Specialization> {label}
+    </div>
+  ) : (
+    ""
+  );
+};
+
+const specOptions = [
+  "alchemy",
+  "brewing",
+  "cloth",
+  "engineering",
+  "farming",
+  "meat",
+  "warmth",
+  "woodworking",
+].map((o) => ({ label: o, value: o }));
 
 export const Filters = ({ form, selectedIds }: FiltersProps): JSX.Element => {
   const { register, control, reset, setFocus } = form;
@@ -25,7 +50,7 @@ export const Filters = ({ form, selectedIds }: FiltersProps): JSX.Element => {
   const focusSelect = useCallback(
     (e: KeyboardEvent) => {
       e.preventDefault();
-      setFocus("name");
+      setFocus("name", { shouldSelect: true });
     },
     [setFocus]
   );
@@ -38,7 +63,7 @@ export const Filters = ({ form, selectedIds }: FiltersProps): JSX.Element => {
         <input
           className="filter-text"
           type="text"
-          placeholder="Building name (type /)"
+          placeholder="Building"
           {...register("name")}
         />
       </div>
@@ -51,7 +76,7 @@ export const Filters = ({ form, selectedIds }: FiltersProps): JSX.Element => {
           </label>
           <label>
             <input type="radio" value="ingredient" {...register("goodsType")} />{" "}
-            <span>Uses ingredient</span>
+            <span>Uses</span>
           </label>
         </span>
 
@@ -61,6 +86,24 @@ export const Filters = ({ form, selectedIds }: FiltersProps): JSX.Element => {
           defaultValue={[]}
           render={({ field: { onChange, value } }) => (
             <GoodsSelector isMulti onChange={onChange} value={value} />
+          )}
+        />
+        <Controller
+          control={control}
+          name="specialization"
+          defaultValue=""
+          render={({ field: { onChange, value } }) => (
+            <Select
+              className="specialization-selector"
+              placeholder="Specialization"
+              isClearable
+              onChange={onChange}
+              value={value}
+              options={specOptions}
+              formatOptionLabel={({ value, label }: Option) =>
+                renderSpecOption(value, label)
+              }
+            />
           )}
         />
       </div>

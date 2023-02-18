@@ -7,6 +7,7 @@ import "./Building.css";
 import { Stars } from "./Stars";
 import { GoodsImage } from "./GoodsImage";
 import { T } from "../components/T";
+import { Specialization } from "../components/Specialization";
 
 type BuildingProps = {
   building: BuildingType;
@@ -51,8 +52,22 @@ const Recipe = ({ recipe }: { recipe: RecipeType }) => {
   );
 };
 
+const Specializations = ({
+  specializations,
+}: {
+  specializations: string[];
+}) => {
+  return (
+    <>
+      {specializations.map((spec) => (
+        <Specialization key={spec}>{spec}</Specialization>
+      ))}
+    </>
+  );
+};
+
 export const Building = ({
-  building: { recipes = [], id },
+  building: { recipes = [], id, specialization },
   stars,
 }: BuildingProps): JSX.Element => {
   const filteredRecipes = stars
@@ -62,9 +77,12 @@ export const Building = ({
 
   return (
     <details className="building">
-      <summary className="building-title">
-        {/* <img src={`img/buildings/${building.id}.png`} /> */}
-        <T>{id}</T>
+      <summary className="building-header">
+        <span className="building-title">
+          <T>{id}</T>
+
+          <Specializations specializations={specialization} />
+        </span>
         <span className="building-products">
           {products.map((p) => (
             <GoodsImage size="small" type="square" key={p.id} id={p.id} />

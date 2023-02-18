@@ -129,7 +129,7 @@ export const buildings: Building[] = [
 
   {
     id: "carpenter",
-    specialization: ["wood"],
+    specialization: ["woodworking"],
     cost: [
       { id: "planks", amount: 5 },
       { id: "fabric", amount: 2 },
@@ -188,7 +188,7 @@ export const buildings: Building[] = [
 
   {
     id: "cooperage",
-    specialization: ["wood"],
+    specialization: ["woodworking"],
     cost: [
       { id: "planks", amount: 5 },
       { id: "bricks", amount: 2 },
@@ -303,13 +303,13 @@ export const buildings: Building[] = [
   },
   {
     id: "grove",
-    specialization: ["wood"],
+    specialization: ["woodworking"],
     cost: [{ id: "planks", amount: 2 }],
     recipes: [],
   },
   {
     id: "guildHouse",
-    specialization: ["wood"],
+    specialization: ["woodworking"],
     cost: [
       { id: "planks", amount: 40 },
       { id: "fabric", amount: 4 },
@@ -378,7 +378,7 @@ export const buildings: Building[] = [
   },
   {
     id: "lumbermill",
-    specialization: ["wood"],
+    specialization: ["woodworking"],
     cost: [
       { id: "bricks", amount: 2 },
       { id: "fabric", amount: 2 },
@@ -644,7 +644,7 @@ export const buildings: Building[] = [
   },
   {
     id: "woodcuttersCamp",
-    specialization: ["wood"],
+    specialization: ["woodworking"],
     cost: [{ id: "parts", amount: 2 }],
     recipes: [],
   },
