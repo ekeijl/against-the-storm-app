@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useMemo, useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { buildings, ingredientsPerBuilding } from "../data/buildings";
 import { Filters, FiltersType } from "./BuildingsPage/Filters";
@@ -7,13 +7,15 @@ import { GoodsSummary } from "./BuildingsPage/GoodsSummary";
 import { Page } from "../components/Page";
 
 const BuildingsPage = (): JSX.Element => {
-  const form = useForm<FiltersType>({
+  const form = useForm<Partial<FiltersType>>({
     defaultValues: {
       goodsType: "produces",
     },
   });
 
-  const filters = form.watch();
+  const { watch, setFocus } = form;
+
+  const filters = watch();
 
   const [selectedIds, setSelectedIds] = useState<string[]>([]);
 
@@ -21,12 +23,14 @@ const BuildingsPage = (): JSX.Element => {
     const filterEntries = Object.entries(filters);
     if (filterEntries.length === 0) return buildings;
 
-    const { name, stars, goods, goodsType, onlySelected } = filters;
+    const { name, stars, goods, goodsType, specialization, onlySelected } =
+      filters;
 
     return buildings.filter(
-      ({ id, recipes = [] }) =>
+      ({ id, recipes = [], specialization: buildingSpec }) =>
         (!name || id.includes(name)) &&
         (!stars || recipes.some((r) => r.stars === stars)) &&
+        (!specialization || buildingSpec.includes(specialization)) &&
         (!goods?.length ||
           (goodsType === "produces" &&
             recipes.some((r) => goods.includes(r.product.id))) ||
@@ -45,6 +49,10 @@ const BuildingsPage = (): JSX.Element => {
       { keepDefaultValues: true }
     );
   };
+
+  useEffect(() => {
+    setFocus("name", { shouldSelect: true });
+  }, [setFocus]);
 
   return (
     <Page>

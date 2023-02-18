@@ -9,9 +9,12 @@
 
 .filters .goods-selector {
   flex: 1;
-  width: max(40ch, 10vw);
+  width: max(35ch, 10vw);
 }
 
+.specialization-selector {
+  width: 20ch;
+}
 .filters,
 .filter-section {
   display: flex;
@@ -51,6 +54,12 @@
   gap: 0.5rem;
 }
 
+.specialization-option {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
 @media screen and (min-width: 768px) {
   .filter-goods {
     flex-direction: row;
@@ -59,7 +68,7 @@
 @media screen and (min-width: 992px) {
   .filter-text,
   .goods-selector {
-    width: 30ch;
+    width: 18ch;
   }
   .filters,
   .filter-section {
