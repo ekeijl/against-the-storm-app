@@ -2,7 +2,7 @@ export const human = {
   id: "human",
   specialization: "farming",
   resolve: "brewing",
-  needs: ["jerky", "biscuits", "pie", "coats"],
+  needs: ["porridge", "biscuits", "pie", "coats"],
   services: ["leisure", "religion"],
   color: "#089b3c", // green
 };
@@ -20,16 +20,25 @@ export const lizard = {
   id: "lizard",
   specialization: "meat",
   resolve: "warmth",
-  needs: ["jerky", "pie", "pickledGoods", "skewers"],
+  needs: ["jerky", "skewers", "pie", "pickledGoods", "skewers"],
   services: ["brawling", "religion"],
-  color: "#db3a08", // orange
+  color: "#e67700", // orange
+};
+
+export const fox = {
+  id: "fox",
+  specialization: "scouting",
+  resolve: "rainwater",
+  needs: ["porridge", "skewers", "pickledGoods"],
+  services: ["brawling", "luxury", "treatment"],
+  color: "#c92a2a", // red
 };
 
 export const harpy = {
   id: "harpy",
   specialization: "alchemy",
   resolve: "cloth",
-  needs: ["jerky", "skewers", "biscuits"],
-  services: ["brawling", "education", "cleanliness"],
+  needs: ["jerky", "biscuits", "pie", "coats"],
+  services: ["education", "treatment"],
   color: "#c03aec", // purple
 };
