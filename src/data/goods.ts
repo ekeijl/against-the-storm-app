@@ -12,6 +12,7 @@ export const consumable = [
   "cosmetics",
   "incense",
   "scrolls",
+  "tea",
   "trainingGear",
   "wine",
 ];
@@ -49,6 +50,7 @@ export const food = [
   "mushrooms",
   "pickledGoods",
   "pie",
+  "porridge",
   "roots",
   "skewers",
   "vegetables",
@@ -56,11 +58,10 @@ export const food = [
 
 export const fuel = [
   "coal",
-  "infusedTools",
   "oil",
   "purgingFire",
   "seaMarrow",
-  "simpleTools",
+  "tools",
   "wood",
 ];
 

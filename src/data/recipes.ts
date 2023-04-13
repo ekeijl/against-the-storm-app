@@ -222,36 +222,6 @@ export const copperBars3 = {
   stars: 3,
 };
 
-export const cosmetics1 = {
-  ingredients: [
-    [
-      { id: "oil", amount: 4 },
-      { id: "eggs", amount: 4 },
-    ],
-    [
-      { id: "pigment", amount: 4 },
-      { id: "herbs", amount: 4 },
-      { id: "resin", amount: 4 },
-    ],
-  ],
-  product: { id: "cosmetics", amount: 10 },
-  stars: 1,
-};
-export const cosmetics2 = {
-  ingredients: [
-    [
-      { id: "oil", amount: 3 },
-      { id: "eggs", amount: 3 },
-    ],
-    [
-      { id: "pigment", amount: 3 },
-      { id: "herbs", amount: 3 },
-      { id: "resin", amount: 3 },
-    ],
-  ],
-  product: { id: "cosmetics", amount: 10 },
-  stars: 2,
-};
 export const coal1 = {
   ingredients: [
     [
@@ -312,6 +282,30 @@ export const coats3 = {
   ],
   product: { id: "coats", amount: 10 },
   stars: 3,
+};
+export const crystal1 = {
+  ingredients: [
+    [
+      { id: "herbs", amount: 3 },
+      { id: "insects", amount: 3 },
+      { id: "resin", amount: 3 },
+      { id: "vegetables", amount: 3 },
+    ],
+    [
+      { id: "stone", amount: 4 },
+      { id: "clay", amount: 4 },
+    ],
+    [
+      { id: "stormWater", amount: 10 },
+      { id: "clearanceWater", amount: 14 },
+      { id: "drizzleWater", amount: 18 },
+    ],
+  ],
+  product: {
+    id: "crystalizedDew",
+    amount: 2,
+  },
+  stars: 2,
 };
 export const crystal2 = {
   ingredients: [
@@ -489,25 +483,6 @@ export const incense2 = {
     ],
   ],
   stars: 2,
-};
-export const infusedTools3 = {
-  product: { id: "infusedTools", amount: 2 },
-  ingredients: [
-    [
-      { id: "wood", amount: 6 },
-      { id: "planks", amount: 1 },
-    ],
-    [
-      { id: "copperBars", amount: 2 },
-      { id: "crystalizedDew", amount: 2 },
-    ],
-    [
-      { id: "stormWater", amount: 8 },
-      { id: "clearanceWater", amount: 12 },
-      { id: "drizzleWater", amount: 16 },
-    ],
-  ],
-  stars: 3,
 };
 export const jerky0 = {
   ingredients: [
@@ -920,6 +895,57 @@ export const planks3 = {
   product: { id: "planks", amount: 2 },
   stars: 3,
 };
+export const porridge0 = {
+  ingredients: [
+    [
+      { id: "grain", amount: 8 },
+      { id: "vegetables", amount: 8 },
+      { id: "mushrooms", amount: 8 },
+      { id: "herbs", amount: 8 },
+    ],
+    [
+      { id: "stormWater", amount: 10 },
+      { id: "clearanceWater", amount: 12 },
+      { id: "drizzleWater", amount: 14 },
+    ],
+  ],
+  product: { id: "porridge", amount: 10 },
+  stars: 0,
+};
+export const porridge2 = {
+  ingredients: [
+    [
+      { id: "grain", amount: 5 },
+      { id: "vegetables", amount: 5 },
+      { id: "mushrooms", amount: 5 },
+      { id: "herbs", amount: 5 },
+    ],
+    [
+      { id: "stormWater", amount: 7 },
+      { id: "clearanceWater", amount: 9 },
+      { id: "drizzleWater", amount: 11 },
+    ],
+  ],
+  product: { id: "porridge", amount: 10 },
+  stars: 2,
+};
+export const porridge3 = {
+  ingredients: [
+    [
+      { id: "grain", amount: 4 },
+      { id: "vegetables", amount: 4 },
+      { id: "mushrooms", amount: 4 },
+      { id: "herbs", amount: 4 },
+    ],
+    [
+      { id: "stormWater", amount: 6 },
+      { id: "clearanceWater", amount: 8 },
+      { id: "drizzleWater", amount: 10 },
+    ],
+  ],
+  product: { id: "porridge", amount: 10 },
+  stars: 3,
+};
 export const pottery1 = {
   ingredients: [
     [{ id: "clay", amount: 4 }],
@@ -1012,7 +1038,7 @@ export const simpleTools1 = {
       { id: "crystalizedDew", amount: 4 },
     ],
   ],
-  product: { id: "simpleTools", amount: 2 },
+  product: { id: "tools", amount: 2 },
   stars: 1,
 };
 export const simpleTools2 = {
@@ -1026,7 +1052,7 @@ export const simpleTools2 = {
       { id: "crystalizedDew", amount: 3 },
     ],
   ],
-  product: { id: "simpleTools", amount: 2 },
+  product: { id: "tools", amount: 2 },
   stars: 2,
 };
 export const simpleTools3 = {
@@ -1040,7 +1066,7 @@ export const simpleTools3 = {
       { id: "crystalizedDew", amount: 2 },
     ],
   ],
-  product: { id: "simpleTools", amount: 2 },
+  product: { id: "tools", amount: 2 },
   stars: 3,
 };
 export const skewers2 = {
@@ -1095,6 +1121,75 @@ export const parts3 = {
     ],
   ],
   product: { id: "parts", amount: 1 },
+  stars: 3,
+};
+
+export const tea1 = {
+  ingredients: [
+    [
+      { id: "herbs", amount: 4 },
+      { id: "pigment", amount: 4 },
+      { id: "resin", amount: 4 },
+      { id: "mushrooms", amount: 4 },
+      { id: "roots", amount: 4 },
+    ],
+    [
+      { id: "drizzleWater", amount: 4 },
+      { id: "clearanceWater", amount: 5 },
+      { id: "stormWater", amount: 6 },
+    ],
+    [
+      { id: "crystalizedDew", amount: 2 },
+      { id: "copperBars", amount: 2 },
+    ],
+  ],
+  product: { id: "tea", amount: 10 },
+  stars: 1,
+};
+
+export const tea2 = {
+  ingredients: [
+    [
+      { id: "herbs", amount: 3 },
+      { id: "pigment", amount: 3 },
+      { id: "resin", amount: 3 },
+      { id: "mushrooms", amount: 3 },
+      { id: "roots", amount: 3 },
+    ],
+    [
+      { id: "drizzleWater", amount: 3 },
+      { id: "clearanceWater", amount: 4 },
+      { id: "stormWater", amount: 5 },
+    ],
+    [
+      { id: "crystalizedDew", amount: 2 },
+      { id: "copperBars", amount: 2 },
+    ],
+  ],
+  product: { id: "tea", amount: 10 },
+  stars: 2,
+};
+
+export const tea3 = {
+  ingredients: [
+    [
+      { id: "herbs", amount: 2 },
+      { id: "pigment", amount: 2 },
+      { id: "resin", amount: 2 },
+      { id: "mushrooms", amount: 2 },
+      { id: "roots", amount: 2 },
+    ],
+    [
+      { id: "drizzleWater", amount: 2 },
+      { id: "clearanceWater", amount: 3 },
+      { id: "stormWater", amount: 4 },
+    ],
+    [
+      { id: "crystalizedDew", amount: 1 },
+      { id: "copperBars", amount: 1 },
+    ],
+  ],
+  product: { id: "tea", amount: 10 },
   stars: 3,
 };
 
@@ -1192,5 +1287,21 @@ export const wine3 = {
     ],
   ],
   product: { id: "wine", amount: 10 },
+  stars: 3,
+};
+
+export const wildfireEssence3 = {
+  ingredients: [
+    [{ id: "coal", amount: 10 }],
+    [
+      { id: "copperBars", amount: 2 },
+      { id: "crystalizedDew", amount: 2 },
+    ],
+    [
+      { id: "clearanceWater", amount: 10 },
+      { id: "stormWater", amount: 10 },
+    ],
+  ],
+  product: { id: "wildfireEssence", amount: 1 },
   stars: 3,
 };
