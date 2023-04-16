@@ -9,7 +9,6 @@ export const building = [
 export const consumable = [
   "ale",
   "coats",
-  "cosmetics",
   "incense",
   "scrolls",
   "tea",

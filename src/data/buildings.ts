@@ -24,7 +24,7 @@ export interface Building {
 }
 
 export const buildings: Building[] = [
-    {
+  {
     id: "advancedRainCollector",
     specialization: ["rainwater"],
     cost: [
@@ -42,6 +42,12 @@ export const buildings: Building[] = [
       { id: "brick", amount: 2 },
     ],
     recipes: [r.crystal2, r.tea2, r.wine2],
+  },
+  {
+    id: "ancientHearth",
+    specialization: ["warmth"],
+    cost: [],
+    recipes: [],
   },
 
   {
@@ -84,7 +90,7 @@ export const buildings: Building[] = [
     ],
     recipes: [],
   },
-  
+
   {
     id: "beanery",
     specialization: ["warmth", "rainwater"],
@@ -103,7 +109,7 @@ export const buildings: Building[] = [
   },
   {
     id: "blightPost",
-    specialization: [],
+    specialization: ["alchemy", "warmth"],
     cost: [
       { id: "planks", amount: 4 },
       { id: "bricks", amount: 3 },
@@ -222,7 +228,7 @@ export const buildings: Building[] = [
     cost: [{ id: "wood", amount: 5 }],
     recipes: [r.planks0, r.fabric0, r.bricks0, r.pipes0],
   },
-  
+
   {
     id: "distillery",
     specialization: ["brewing", "rainwater"],
@@ -269,6 +275,25 @@ export const buildings: Building[] = [
     cost: [],
     recipes: [r.jerky0, r.porridge0, r.biscuits0, r.pickledGoods0],
   },
+  {
+    id: "flawlessBrewery",
+    specialization: ["brewing"],
+    cost: [
+      { id: "planks", amount: 2 },
+      { id: "fabric", amount: 2 },
+      { id: "bricks", amount: 2 },
+    ],
+    recipes: [r.ale3f, r.pickledGoods3f, r.packOfCrops3f],
+  },
+  {
+    id: "flawlessRainMill",
+    specialization: ["engineering", "farming"],
+    cost: [
+      { id: "planks", amount: 5 },
+      { id: "fabric", amount: 2 },
+    ],
+    recipes: [r.flour3, r.scrolls3, r.packOfBuildingMaterials3],
+  },
 
   {
     id: "foragersCamp",
@@ -277,6 +302,12 @@ export const buildings: Building[] = [
       { id: "wood", amount: 10 },
       { id: "parts", amount: 3 },
     ],
+    recipes: [],
+  },
+  {
+    id: "forestersHut",
+    specialization: ["woodworking"],
+    cost: [{ id: "planks", amount: 2 }],
     recipes: [],
   },
   {
@@ -348,6 +379,18 @@ export const buildings: Building[] = [
     recipes: [],
   },
   {
+    id: "hallowedHerbGarden",
+    specialization: ["farming"],
+    cost: [{ id: "planks", amount: 2 }],
+    recipes: [],
+  },
+  {
+    id: "hallowedSmallFarm",
+    specialization: ["farming"],
+    cost: [{ id: "planks", amount: 2 }],
+    recipes: [],
+  },
+  {
     id: "harpyHouse",
     specialization: [],
     cost: [{ id: "fabric", amount: 4 }],
@@ -361,13 +404,13 @@ export const buildings: Building[] = [
   },
   {
     id: "herbGarden",
-    specialization: [],
+    specialization: ["farming"],
     cost: [{ id: "planks", amount: 2 }],
     recipes: [],
   },
   {
     id: "herbalistsCamp",
-    specialization: [],
+    specialization: ["alchemy"],
     cost: [
       { id: "wood", amount: 10 },
       { id: "parts", amount: 3 },
@@ -380,6 +423,35 @@ export const buildings: Building[] = [
     cost: [
       { id: "planks", amount: 4 },
       { id: "bricks", amount: 2 },
+    ],
+    recipes: [],
+  },
+  {
+    id: "holyMarket",
+    specialization: [],
+    cost: [
+      { id: "planks", amount: 20 },
+      { id: "fabric", amount: 12 },
+    ],
+    recipes: [],
+  },
+  {
+    id: "holyTemple",
+    specialization: [],
+    cost: [
+      { id: "planks", amount: 10 },
+      { id: "bricks", amount: 8 },
+      { id: "fabric", amount: 8 },
+    ],
+    recipes: [],
+  },
+  {
+    id: "homestead",
+    specialization: ["farming"],
+    cost: [
+      { id: "planks", amount: 5 },
+      { id: "bricks", amount: 2 },
+      { id: "fabric", amount: 2 },
     ],
     recipes: [],
   },
@@ -417,6 +489,16 @@ export const buildings: Building[] = [
     recipes: [r.planks3, r.scrolls1, r.packOfTradeGoods1],
   },
   {
+    id: "mainWarehouse",
+    specialization: [],
+    cost: [
+      { id: "planks", amount: 8 },
+      { id: "bricks", amount: 2 },
+      { id: "parts", amount: 2 },
+    ],
+    recipes: [],
+  },
+  {
     id: "makeshiftPost",
     specialization: [],
     cost: [{ id: "wood", amount: 5 }],
@@ -424,7 +506,7 @@ export const buildings: Building[] = [
   },
   {
     id: "manufactory",
-    specialization: [],
+    specialization: ["cloth"],
     cost: [
       { id: "planks", amount: 5 },
       { id: "fabric", amount: 2 },
@@ -545,6 +627,43 @@ export const buildings: Building[] = [
     recipes: [],
   },
   {
+    id: "smallForagersCamp",
+    specialization: ["farming"],
+    cost: [
+      { id: "wood", amount: 10 },
+      { id: "parts", amount: 3 },
+    ],
+    recipes: [],
+  },
+  {
+    id: "smallHearth",
+    specialization: ["warmth"],
+    cost: [
+      { id: "planks", amount: 5 },
+      { id: "bricks", amount: 5 },
+      { id: "wildfireEssence", amount: 2 },
+    ],
+    recipes: [],
+  },
+  {
+    id: "smallHerbalistsCamp",
+    specialization: ["alchemy"],
+    cost: [
+      { id: "wood", amount: 10 },
+      { id: "parts", amount: 3 },
+    ],
+    recipes: [],
+  },
+  {
+    id: "smallTrappersCamp",
+    specialization: ["meat"],
+    cost: [
+      { id: "wood", amount: 10 },
+      { id: "parts", amount: 3 },
+    ],
+    recipes: [],
+  },
+  {
     id: "smelter",
     specialization: ["warmth"],
     cost: [{ id: "bricks", amount: 4 }],
@@ -612,7 +731,7 @@ export const buildings: Building[] = [
       { id: "planks", amount: 10 },
       { id: "bricks", amount: 8 },
       { id: "cloth", amount: 8 },
-      ],
+    ],
     recipes: [],
   },
   {
