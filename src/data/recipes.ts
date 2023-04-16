@@ -54,12 +54,28 @@ export const ale3 = {
   product: { id: "ale", amount: 10 },
   stars: 3,
 };
+export const ale3f = {
+  ingredients: [
+    [
+      { id: "grain", amount: 4 },
+      { id: "roots", amount: 4 },
+    ],
+    [
+      { id: "pottery", amount: 2 },
+      { id: "barrels", amount: 1 },
+      { id: "waterskins", amount: 2 },
+    ],
+  ],
+  product: { id: "ale", amount: 15 },
+  stars: 3,
+};
 export const barrels1 = {
   ingredients: [
     [
       { id: "copperBars", amount: 3 },
       { id: "crystalizedDew", amount: 3 },
     ],
+    [{ id: "planks", amount: 2 }],
   ],
   product: { id: "barrels", amount: 2 },
   stars: 1,
@@ -70,6 +86,7 @@ export const barrels2 = {
       { id: "copperBars", amount: 2 },
       { id: "crystalizedDew", amount: 2 },
     ],
+    [{ id: "planks", amount: 2 }],
   ],
   product: { id: "barrels", amount: 2 },
   stars: 2,
@@ -80,6 +97,7 @@ export const barrels3 = {
       { id: "copperBars", amount: 1 },
       { id: "crystalizedDew", amount: 1 },
     ],
+    [{ id: "planks", amount: 2 }],
   ],
   product: { id: "barrels", amount: 2 },
   stars: 3,
@@ -645,6 +663,18 @@ export const packOfBuildingMaterials2 = {
   product: { id: "packOfBuildingMaterials", amount: 2 },
   stars: 2,
 };
+export const packOfBuildingMaterials3 = {
+  ingredients: [
+    [
+      { id: "planks", amount: 6 },
+      { id: "fabric", amount: 3 },
+      { id: "bricks", amount: 3 },
+      { id: "copperOre", amount: 8 },
+    ],
+  ],
+  product: { id: "packOfBuildingMaterials", amount: 2 },
+  stars: 3,
+};
 export const packOfCrops0 = {
   ingredients: [
     [
@@ -681,6 +711,19 @@ export const packOfCrops2 = {
   product: { id: "packOfCrops", amount: 2 },
   stars: 1,
 };
+//flawless
+export const packOfCrops3f = {
+  ingredients: [
+    [
+      { id: "roots", amount: 3 },
+      { id: "grain", amount: 3 },
+      { id: "vegetables", amount: 3 },
+      { id: "mushrooms", amount: 3 },
+    ],
+  ],
+  product: { id: "packOfCrops", amount: 5 },
+  stars: 3,
+};
 export const packOfLuxuryGoods1 = {
   ingredients: [
     [
@@ -689,7 +732,7 @@ export const packOfLuxuryGoods1 = {
       { id: "incense", amount: 5 },
       { id: "scrolls", amount: 5 },
       { id: "ale", amount: 5 },
-      { id: "cosmetics", amount: 5 },
+      { id: "tea", amount: 5 },
     ],
   ],
   product: { id: "packOfLuxuryGoods", amount: 2 },
@@ -703,7 +746,7 @@ export const packOfLuxuryGoods2 = {
       { id: "incense", amount: 4 },
       { id: "scrolls", amount: 4 },
       { id: "ale", amount: 4 },
-      { id: "cosmetics", amount: 4 },
+      { id: "tea", amount: 4 },
     ],
   ],
   product: { id: "packOfLuxuryGoods", amount: 2 },
@@ -817,6 +860,25 @@ export const pickledGoods2 = {
   product: { id: "pickledGoods", amount: 10 },
   stars: 2,
 };
+// flawless
+export const pickledGoods3f = {
+  ingredients: [
+    [
+      { id: "vegetables", amount: 4 },
+      { id: "mushrooms", amount: 4 },
+      { id: "roots", amount: 4 },
+      { id: "berries", amount: 4 },
+      { id: "eggs", amount: 4 },
+    ],
+    [
+      { id: "pottery", amount: 3 },
+      { id: "barrels", amount: 3 },
+      { id: "waterskins", amount: 2 },
+    ],
+  ],
+  product: { id: "pickledGoods", amount: 15 },
+  stars: 3,
+};
 
 export const pie2 = {
   ingredients: [
@@ -846,6 +908,7 @@ export const pie3 = {
   product: { id: "pie", amount: 10 },
   stars: 3,
 };
+
 export const pipes0 = {
   ingredients: [
     [
