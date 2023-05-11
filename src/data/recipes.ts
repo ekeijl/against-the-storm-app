@@ -187,6 +187,22 @@ export const bricks2 = {
   product: { id: "bricks", amount: 2 },
   stars: 2,
 };
+export const bricks3 = {
+  ingredients: [
+    [
+      {
+        id: "clay",
+        amount: 2,
+      },
+      {
+        id: "stone",
+        amount: 2,
+      },
+    ],
+  ],
+  product: { id: "bricks", amount: 2 },
+  stars: 3,
+};
 export const clay = {
   ingredients: [
     [
@@ -323,7 +339,7 @@ export const crystal1 = {
     id: "crystalizedDew",
     amount: 2,
   },
-  stars: 2,
+  stars: 1,
 };
 export const crystal2 = {
   ingredients: [

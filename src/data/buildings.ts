@@ -140,7 +140,7 @@ export const buildings: Building[] = [
     id: "brickyard",
     specialization: ["rainwater"],
     cost: [{ id: "planks", amount: 8 }],
-    recipes: [r.bricks2, r.pottery2, r.crystal2],
+    recipes: [r.bricks3, r.pottery2, r.crystal1],
   },
 
   {
