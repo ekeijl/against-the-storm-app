@@ -174,7 +174,7 @@ export const buildings: Building[] = [
   },
   {
     id: "clanHall",
-    specialization: [],
+    specialization: ["warmth"],
     cost: [
       { id: "planks", amount: 20 },
       { id: "bricks", amount: 8 },
@@ -312,7 +312,7 @@ export const buildings: Building[] = [
   },
   {
     id: "forum",
-    specialization: [],
+    specialization: ["brewing"],
     cost: [
       { id: "fabric", amount: 4 },
       { id: "bricks", amount: 16 },
@@ -534,7 +534,7 @@ export const buildings: Building[] = [
   },
   {
     id: "monastery",
-    specialization: [],
+    specialization: ["warmth", "brewing"],
     cost: [{ id: "bricks", amount: 20 }],
     recipes: [],
   },
@@ -716,7 +716,7 @@ export const buildings: Building[] = [
   },
   {
     id: "tavern",
-    specialization: [],
+    specialization: ["brewing"],
     cost: [
       { id: "planks", amount: 20 },
       { id: "bricks", amount: 4 },
@@ -745,7 +745,7 @@ export const buildings: Building[] = [
   },
   {
     id: "temple",
-    specialization: [],
+    specialization: ["warmth"],
     cost: [
       { id: "planks", amount: 10 },
       { id: "bricks", amount: 8 },
