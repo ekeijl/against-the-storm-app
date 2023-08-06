@@ -1,5 +1,6 @@
-import { useMemo, useState, useEffect } from "react";
+import { useMemo, useEffect } from "react";
 import { useForm } from "react-hook-form";
+import { useLocalStorage } from "usehooks-ts";
 import { buildings, ingredientsPerBuilding } from "../data/buildings";
 import { Filters, FiltersType } from "./BuildingsPage/Filters";
 import { BuildingsList } from "./BuildingsPage/BuildingsList";
@@ -17,7 +18,10 @@ const BuildingsPage = (): JSX.Element => {
 
   const filters = watch();
 
-  const [selectedIds, setSelectedIds] = useState<string[]>([]);
+  const [selectedIds, setSelectedIds] = useLocalStorage<string[]>(
+    "selectedBuildingIds",
+    []
+  );
 
   const filteredBuildings = useMemo(() => {
     const filterEntries = Object.entries(filters);
