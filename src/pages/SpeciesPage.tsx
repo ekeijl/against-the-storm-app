@@ -49,7 +49,7 @@ const Species = ({ species: { id, color } }: { species: Species }) => (
   />
 );
 
-const speciesDefault: string[] = [];
+const speciesDefault: string[] = speciesData.map((s) => s.id);
 
 const SpeciesPage = (): JSX.Element => {
   const graphRef = useRef<ForceGraphMethods>();
