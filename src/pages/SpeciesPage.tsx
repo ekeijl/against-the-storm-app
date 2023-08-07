@@ -1,5 +1,6 @@
 import { useMemo, useRef } from "react";
-import { useLocalStorage, useElementSize } from "usehooks-ts";
+import classnames from "classnames";
+import { useLocalStorage, useElementSize, useToggle } from "usehooks-ts";
 import { Toggle } from "../components/Toggle";
 import * as THREE from "three";
 import ForceGraph3D from "react-force-graph-3d";
@@ -12,6 +13,7 @@ import type {
 import * as s from "../data/species";
 import { Page } from "../components/Page";
 import "./SpeciesPage.css";
+import { Fullscreen } from "../components/Fullscreen";
 
 interface Species {
   id: string;
@@ -58,6 +60,8 @@ const SpeciesPage = (): JSX.Element => {
   const [speciesIds, setSpecies] = useLocalStorage("species", speciesDefault);
   const [showNeeds, setNeeds] = useLocalStorage("showNeeds", true);
   const [showServices, setServices] = useLocalStorage("showServices", true);
+
+  const [fullScreen, toggleFullscreen] = useToggle();
 
   const speciesSet = useMemo(() => new Set(speciesIds), [speciesIds]);
 
@@ -163,7 +167,12 @@ const SpeciesPage = (): JSX.Element => {
         </label>
       </div>
 
-      <div className="species-graph" ref={containerRef}>
+      <div
+        className={classnames("species-graph", {
+          "species-graph-fullscreen": fullScreen,
+        })}
+        ref={containerRef}
+      >
         <ForceGraph3D
           graphData={data}
           ref={graphRef}
@@ -178,6 +187,13 @@ const SpeciesPage = (): JSX.Element => {
           cooldownTicks={100}
           onEngineStop={() => graphRef?.current?.zoomToFit(400, 1)}
         />
+        <button
+          className="fullscreen-toggle"
+          onClick={toggleFullscreen}
+          title="Toggle fullscreen mode"
+        >
+          <Fullscreen />
+        </button>
       </div>
     </Page>
   );

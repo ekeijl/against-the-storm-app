@@ -16,6 +16,23 @@
   border-radius: 50%;
 }
 .species-graph {
+  position: relative;
   flex: 0 1 100%;
   margin-top: 1rem;
+}
+
+.species-graph-fullscreen {
+  position: absolute;
+  inset: 0rem;
+  margin: 0;
+  background: #000;
+}
+.fullscreen-toggle {
+  position: absolute;
+  padding: 0;
+  color: #fff;
+  right: 1rem;
+  bottom: 1rem;
+  width: 36px;
+  height: 36px;
 }
