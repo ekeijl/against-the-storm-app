@@ -14,10 +14,10 @@ export const Page = ({
   className = "",
   ...props
 }: PageProps): JSX.Element => (
-  <div
+  <main
     className={classnames("page", className, { "full-height": isFullHeight })}
     {...props}
   >
     {children}
-  </div>
+  </main>
 );

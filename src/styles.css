@@ -9,23 +9,20 @@
 
   --form-control-color: #0ec9f4;
   --form-control-disabled: #959495;
+
+  --outline-size: max(2px, 0.08em);
+  --outline-style: solid;
+  --outline-color: var(--highlight-color);
 }
 ::selection {
   background: var(--highlight-color);
 }
 
-/** Set outline for multiple elements */
-:is(a, button, input, textarea, summary) {
-  --outline-size: max(2px, 0.08em);
-  --outline-style: solid;
-  --outline-color: var(--highlight-color);
-}
-
-:is(a, button, input, textarea, summary):focus {
+*:focus {
   outline: var(--outline-size) var(--outline-style) var(--outline-color);
   outline-offset: var(--outline-offset, var(--outline-size));
 }
-:is(a, button, input, textarea, summary):focus-visible {
+*:focus-visible {
   outline: var(--outline-size) var(--outline-style) var(--outline-color);
   outline-offset: var(--outline-offset, var(--outline-size));
 }
@@ -182,4 +179,7 @@ input[type="radio"]:disabled {
 
 .t:first-letter {
   text-transform: uppercase;
+}
+svg {
+  fill: currentColor;
 }
