@@ -12,32 +12,37 @@ function useDraggable(target: RefObject<HTMLElement>): [x: number, y: number] {
   const [initialPos, setInitialPos] = useState([0, 0]);
   const [position, setPosition] = useState([0, 0]);
 
-  const handleDragStart = (startEvent: Event) => {
-    startEvent.preventDefault();
+  const handleDragStart = (event: PointerEvent) => {
+    event.preventDefault();
     setDragging(true);
 
     const [xOffset, yOffset] = position;
 
-    const { clientX, clientY } = startEvent as MouseEvent;
+    const { clientX, clientY } = event;
 
     const initialX = clientX - xOffset;
     const initialY = clientY - yOffset;
 
+    (event?.target as HTMLButtonElement)?.setPointerCapture(event.pointerId);
     setInitialPos([initialX, initialY]);
   };
 
-  const handleDragEnd = () => {
+  const handleDragEnd = (event: PointerEvent) => {
     setDragging(false);
     setInitialPos(position);
+
+    (event?.target as HTMLButtonElement)?.releasePointerCapture(
+      event.pointerId
+    );
   };
 
-  const handleDragMove = (e: Event) => {
+  const handleDragMove = (event: PointerEvent) => {
     if (dragging) {
-      e.stopPropagation();
-      e.preventDefault();
+      event.stopPropagation();
+      event.preventDefault();
       const [initialX, initialY] = initialPos;
 
-      const { clientX, clientY } = e as MouseEvent;
+      const { clientX, clientY } = event;
 
       const currentX = clientX - initialX;
       const currentY = clientY - initialY;
@@ -46,15 +51,10 @@ function useDraggable(target: RefObject<HTMLElement>): [x: number, y: number] {
     }
   };
 
-  // Mouse
-  useEventListener("mousedown", handleDragStart, target);
-  useEventListener("mouseup", handleDragEnd, target);
-  useEventListener("mousemove", handleDragMove, target);
-
-  // Touch
-  useEventListener("touchstart", handleDragStart, target);
-  useEventListener("touchend", handleDragEnd, target);
-  useEventListener("touchmove", handleDragMove, target);
+  // Register listeners
+  useEventListener("pointerdown", handleDragStart, target);
+  useEventListener("pointerup", handleDragEnd, target);
+  useEventListener("pointermove", handleDragMove, target);
 
   return position as [number, number];
 }
