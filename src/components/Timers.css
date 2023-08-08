@@ -2,7 +2,7 @@
   position: fixed;
   right: 2rem;
   bottom: 2rem;
-  padding: 1rem 2rem;
+  padding: 1rem;
   background: #333333cc;
   z-index: 999;
   font-size: 1.5rem;
@@ -22,6 +22,12 @@
 
 .timer.done {
   animation: ALARM 1s infinite;
+}
+
+.timer-buttons button {
+  padding: 5px 3px;
+  font-size: 0.5em;
+  margin-right: 0.5rem;
 }
 
 @keyframes ALARM {
