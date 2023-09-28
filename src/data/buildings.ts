@@ -67,7 +67,7 @@ export const buildings: Building[] = [
       { id: "plank", amount: 8 },
       { id: "fabric", amount: 4 },
     ],
-    recipes: [r.coats2, r.pigment2, r.barrels2],
+    recipes: [r.coats2, r.packOfLuxuryGoods2, r.barrels2],
   },
 
   {
@@ -219,7 +219,7 @@ export const buildings: Building[] = [
       { id: "planks", amount: 5 },
       { id: "bricks", amount: 2 },
     ],
-    recipes: [r.barrels3, r.trainingGear2, r.tea1],
+    recipes: [r.barrels3, r.coats2, r.tea1],
   },
 
   {
@@ -468,7 +468,7 @@ export const buildings: Building[] = [
       { id: "bricks", amount: 2 },
       { id: "fabric", amount: 2 },
     ],
-    recipes: [r.waterskins3, r.fabric2, r.packOfLuxuryGoods1],
+    recipes: [r.waterskins3, r.fabric2, r.pigment2],
   },
   {
     id: "lizardHouse",
@@ -676,7 +676,7 @@ export const buildings: Building[] = [
       { id: "planks", amount: 5 },
       { id: "bricks", amount: 2 },
     ],
-    recipes: [r.simpleTools2, r.coats2, r.packOfTradeGoods2],
+    recipes: [r.simpleTools2, r.trainingGear2, r.packOfTradeGoods2],
   },
   {
     id: "smokehouse",
@@ -844,7 +844,7 @@ const ingredientTuples: [string, Set<string>][] = buildings.map((b) => {
 // Pre-calculate a mapping of [building id => Set of ingredients (unique)]
 // Iterating over every building -> recipes -> ingredients -> id would cause performance issues
 export const ingredientsPerBuilding = new Map<string, Set<string>>(
-  ingredientTuples
+  ingredientTuples,
 );
 
 const productTuples: [string, Set<string>][] = buildings.map((b) => {

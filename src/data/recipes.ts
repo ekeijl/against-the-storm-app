@@ -1306,7 +1306,7 @@ export const waterskins1 = {
   ingredients: [
     [{ id: "leather", amount: 6 }],
     [
-      { id: "oil", amount: 5 },
+      { id: "oil", amount: 4 },
       { id: "meat", amount: 4 },
     ],
   ],
@@ -1317,7 +1317,7 @@ export const waterskins2 = {
   ingredients: [
     [{ id: "leather", amount: 5 }],
     [
-      { id: "oil", amount: 4 },
+      { id: "oil", amount: 3 },
       { id: "meat", amount: 3 },
     ],
   ],
@@ -1328,7 +1328,7 @@ export const waterskins3 = {
   ingredients: [
     [{ id: "leather", amount: 4 }],
     [
-      { id: "oil", amount: 3 },
+      { id: "oil", amount: 2 },
       { id: "meat", amount: 2 },
     ],
   ],
