@@ -667,7 +667,7 @@ export const buildings: Building[] = [
     id: "smelter",
     specialization: ["warmth"],
     cost: [{ id: "bricks", amount: 4 }],
-    recipes: [r.copperBars3, r.pipes2, r.biscuits1],
+    recipes: [r.copperBars3, r.trainingGear2, r.biscuits1],
   },
   {
     id: "smithy",
@@ -676,7 +676,7 @@ export const buildings: Building[] = [
       { id: "planks", amount: 5 },
       { id: "bricks", amount: 2 },
     ],
-    recipes: [r.simpleTools2, r.trainingGear2, r.packOfTradeGoods2],
+    recipes: [r.simpleTools2, r.pipes2, r.packOfTradeGoods2],
   },
   {
     id: "smokehouse",
