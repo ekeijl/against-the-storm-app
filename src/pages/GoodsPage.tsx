@@ -8,7 +8,15 @@ import { GoodsSelector } from "../components/GoodsSelector";
 import { Stars } from "../components/Stars";
 import { T } from "../components/T";
 
-import { Building, buildings, productsPerBuilding } from "../data/buildings";
+import {
+  Building,
+  buildings as b_1_3,
+  productsPerBuilding as p_1_3,
+} from "../data/buildings";
+import {
+  buildings as b_1_4,
+  productsPerBuilding as p_1_4,
+} from "../data/buildings_1_4";
 import { Page } from "../components/Page";
 import "./GoodsPage.css";
 import {
@@ -22,6 +30,7 @@ import {
   renderLink,
   updateLink,
 } from "./GoodsPageUtil";
+import { useVersionContext } from "../VersionContext";
 
 type BuildingRecipeTuple = [Building, Recipe | undefined];
 
@@ -64,6 +73,9 @@ const BuildingsForItem = ({
 };
 
 const GoodsPage = (): JSX.Element => {
+  const version = useVersionContext();
+  const buildings = version === "1.4" ? b_1_4 : b_1_3;
+  const productsPerBuilding = version === "1.4" ? p_1_4 : p_1_3;
   const graphRef = useRef<ForceGraphMethods>();
   const [good, setGood] = useState("ale");
 

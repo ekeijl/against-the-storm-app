@@ -1,18 +1,30 @@
 import { useMemo, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { useLocalStorage } from "usehooks-ts";
-import { buildings, ingredientsPerBuilding } from "../data/buildings";
+import {
+  buildings as b_1_3,
+  ingredientsPerBuilding as i_1_3,
+} from "../data/buildings";
+import {
+  buildings as b_1_4,
+  ingredientsPerBuilding as i_1_4,
+} from "../data/buildings_1_4";
 import { Filters, FiltersType } from "./BuildingsPage/Filters";
 import { BuildingsList } from "./BuildingsPage/BuildingsList";
 import { GoodsSummary } from "./BuildingsPage/GoodsSummary";
 import { Page } from "../components/Page";
+import { useVersionContext } from "../VersionContext";
 
 const BuildingsPage = (): JSX.Element => {
+  const version = useVersionContext();
   const form = useForm<Partial<FiltersType>>({
     defaultValues: {
       goodsType: "produces",
     },
   });
+
+  const buildings = version === "1.4" ? b_1_4 : b_1_3;
+  const ingredientsPerBuilding = version === "1.4" ? i_1_4 : i_1_3;
 
   const { watch, setFocus } = form;
 
