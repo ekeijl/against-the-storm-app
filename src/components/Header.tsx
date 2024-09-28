@@ -1,11 +1,12 @@
 import "./Header.css";
 import { Select } from "./Select";
+import { VersionContextType } from "../VersionContext";
 
 type HeaderProps = {
   onSetPage: (page: string) => void;
   onAddTimer: () => void;
-  version: string;
-  setVersion: (version: string) => void;
+  version: VersionContextType;
+  setVersion: (version: VersionContextType) => void;
 };
 export const Header = ({
   onSetPage,

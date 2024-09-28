@@ -13,8 +13,10 @@ import { Filters, FiltersType } from "./BuildingsPage/Filters";
 import { BuildingsList } from "./BuildingsPage/BuildingsList";
 import { GoodsSummary } from "./BuildingsPage/GoodsSummary";
 import { Page } from "../components/Page";
+import { useVersionContext } from "../VersionContext";
 
-const BuildingsPage = ({ version }: { version: string }): JSX.Element => {
+const BuildingsPage = (): JSX.Element => {
+  const version = useVersionContext();
   const form = useForm<Partial<FiltersType>>({
     defaultValues: {
       goodsType: "produces",

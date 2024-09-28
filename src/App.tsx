@@ -6,7 +6,7 @@ import { Timers } from "./components/Timers";
 import { TimerModal } from "./components/TimerModal";
 import { Timer } from "./types/Timer";
 import { Loader } from "./components/Loader";
-import { VersionContext } from "./VersionContext";
+import { VersionContext, VersionContextType } from "./VersionContext";
 import "./styles.css";
 
 // Lazy load pages to improve loading time
@@ -21,7 +21,7 @@ export default function App() {
   );
   const [timers, setTimers] = useState<Timer[]>([]);
   const [showModal, setModal] = useState<boolean>(false);
-  const [version, setVersion] = useState<string>("1.4");
+  const [version, setVersion] = useState<VersionContextType>("1.4");
 
   const addTimer = () => {
     setModal(true);
@@ -35,16 +35,16 @@ export default function App() {
   let pageComponent = null;
   switch (page) {
     case "goods":
-      pageComponent = <LazyGoods version={version} />;
+      pageComponent = <LazyGoods />;
       break;
 
     case "species":
-      pageComponent = <LazySpecies version={version} />;
+      pageComponent = <LazySpecies />;
       break;
 
     case "buildings":
     default:
-      pageComponent = <LazyBuildings version={version} />;
+      pageComponent = <LazyBuildings />;
   }
 
   return (
