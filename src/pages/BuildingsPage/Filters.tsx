@@ -8,6 +8,7 @@ import "./Filters.css";
 import { useKeyPress } from "../../hooks/useKeyPress";
 import { Specialization } from "../../components/Specialization";
 import { Option } from "../../types/Option";
+import { useVersionContext } from "../../VersionContext";
 
 export type FiltersType = {
   name: string;
@@ -33,18 +34,36 @@ const renderSpecOption = (value: string, label: string) => {
   );
 };
 
-const specOptions = [
+const specOptions_1_3 = [
   "alchemy",
   "brewing",
   "cloth",
   "engineering",
   "farming",
   "meat",
+  "rainwater",
+  "scouting",
+  "warmth",
+  "woodworking",
+].map((o) => ({ label: o, value: o }));
+
+const specOptions_1_4 = [
+  "alchemy",
+  "blightrot",
+  "brewing",
+  "cloth",
+  "engineering",
+  "farming",
+  "masonry",
+  "meat",
+  "rainwater",
+  "scouting",
   "warmth",
   "woodworking",
 ].map((o) => ({ label: o, value: o }));
 
 export const Filters = ({ form, selectedIds }: FiltersProps): JSX.Element => {
+  const version = useVersionContext();
   const { register, control, reset, setFocus } = form;
 
   const focusSelect = useCallback(
@@ -99,7 +118,7 @@ export const Filters = ({ form, selectedIds }: FiltersProps): JSX.Element => {
               isClearable
               onChange={onChange}
               value={value}
-              options={specOptions}
+              options={version === "1.4" ? specOptions_1_4 : specOptions_1_3}
               formatOptionLabel={({ value, label }: Option) =>
                 renderSpecOption(value, label)
               }

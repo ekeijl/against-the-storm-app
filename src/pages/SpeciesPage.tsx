@@ -10,10 +10,12 @@ import type {
   NodeObject,
 } from "react-force-graph-3d";
 
-import * as s from "../data/species";
+import * as s_1_3 from "../data/species";
+import * as s_1_4 from "../data/species_1_4";
 import { Page } from "../components/Page";
 import "./SpeciesPage.css";
 import { Fullscreen } from "../components/Fullscreen";
+import { useVersionContext } from "../VersionContext";
 
 interface Species {
   id: string;
@@ -40,8 +42,6 @@ const GROUP_SPECIES = 0;
 const GROUP_NEEDS = 1;
 const GROUP_SERVICES = 2;
 
-const speciesData = Object.values({ ...s });
-
 const Species = ({ species: { id, color } }: { species: Species }) => (
   <img
     src={`img/species/${id}.png`}
@@ -51,12 +51,18 @@ const Species = ({ species: { id, color } }: { species: Species }) => (
   />
 );
 
-const speciesDefault: string[] = speciesData.map((s) => s.id);
-
 const SpeciesPage = (): JSX.Element => {
+  const version = useVersionContext();
+
+  const s = version === "1.4" ? s_1_4 : s_1_3;
+  const speciesData = useMemo(() => Object.values({ ...s }), [s]);
   const graphRef = useRef<ForceGraphMethods>();
   const [containerRef, { width, height }] = useElementSize();
 
+  const speciesDefault: string[] = useMemo(
+    () => speciesData.map((s) => s.id),
+    [speciesData]
+  );
   const [speciesIds, setSpecies] = useLocalStorage("species", speciesDefault);
   const [showNeeds, setNeeds] = useLocalStorage("showNeeds", true);
   const [showServices, setServices] = useLocalStorage("showServices", true);

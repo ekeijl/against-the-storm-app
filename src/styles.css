@@ -31,6 +31,7 @@ html {
   background-image: url("/img/bg-textured.jpg"), url("/img/bg-gradient2.svg");
   background-attachment: fixed;
   background-blend-mode: soft-light;
+  background-color: #000;
   background-repeat: no-repeat;
   background-size: cover;
 }
