@@ -16,15 +16,9 @@ import { Page } from "../components/Page";
 import "./SpeciesPage.css";
 import { Fullscreen } from "../components/Fullscreen";
 import { useVersionContext } from "../VersionContext";
+import { SpeciesImage } from "../components/SpeciesImage";
+import { SpeciesName } from "../types/Species";
 
-interface Species {
-  id: string;
-  specialization: string;
-  resolve: string;
-  needs: string[];
-  services: string[];
-  color: string;
-}
 export interface SpeciesNode extends NodeObject {
   group?: number;
   id?: string | number;
@@ -41,15 +35,6 @@ export interface Link extends Omit<LinkObject, "source"> {
 const GROUP_SPECIES = 0;
 const GROUP_NEEDS = 1;
 const GROUP_SERVICES = 2;
-
-const Species = ({ species: { id, color } }: { species: Species }) => (
-  <img
-    src={`img/species/${id}.png`}
-    alt={id}
-    title={id}
-    style={{ border: `2px solid ${color}` }}
-  />
-);
 
 const SpeciesPage = (): JSX.Element => {
   const version = useVersionContext();
@@ -155,7 +140,7 @@ const SpeciesPage = (): JSX.Element => {
               checked={speciesSet.has(species.id)}
               onChange={() => toggleSpecies(species.id)}
             />
-            <Species species={species} />
+            <SpeciesImage species={species.id} color={species.color} />
           </label>
         ))}
 

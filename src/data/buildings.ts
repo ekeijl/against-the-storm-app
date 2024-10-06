@@ -1,3 +1,4 @@
+import { SpeciesName } from "../types/Species";
 import * as r from "./recipes";
 
 export interface Recipe {
@@ -21,6 +22,7 @@ export interface Building {
   recipes?: Recipe[];
   services?: Service[];
   specialization: string[];
+  speciesRequired?: SpeciesName;
 }
 
 export const buildings: Building[] = [

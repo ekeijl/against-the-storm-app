@@ -1,4 +1,6 @@
-export const human = {
+import { Species } from "../types/Species";
+
+export const human: Species = {
   id: "human",
   specialization: "farming",
   resolve: "brewing",
@@ -7,7 +9,7 @@ export const human = {
   color: "#ffd800", // yellow
 };
 
-export const beaver = {
+export const beaver: Species = {
   id: "beaver",
   specialization: "woodworking",
   resolve: "engineering",
@@ -16,7 +18,7 @@ export const beaver = {
   color: "#02a3ce", // blue
 };
 
-export const lizard = {
+export const lizard: Species = {
   id: "lizard",
   specialization: "meat",
   resolve: "warmth",
@@ -25,7 +27,7 @@ export const lizard = {
   color: "#e67700", // orange
 };
 
-export const fox = {
+export const fox: Species = {
   id: "fox",
   specialization: "scouting",
   resolve: "blightrot",
@@ -34,7 +36,7 @@ export const fox = {
   color: "#c92a2a", // red
 };
 
-export const harpy = {
+export const harpy: Species = {
   id: "harpy",
   specialization: "alchemy",
   resolve: "cloth",
@@ -43,7 +45,7 @@ export const harpy = {
   color: "#c03aec", // purple
 };
 
-export const frog = {
+export const frog: Species = {
   id: "frog",
   specialization: "masonry",
   resolve: "rainwater",

@@ -1,3 +1,4 @@
+import { SpeciesName } from "../types/Species";
 import * as r from "./recipes_1_4";
 
 export interface Recipe {
@@ -21,6 +22,7 @@ export interface Building {
   recipes?: Recipe[];
   services?: Service[];
   specialization: string[];
+  speciesRequired?: SpeciesName;
 }
 
 export const buildings: Building[] = [
@@ -38,7 +40,7 @@ export const buildings: Building[] = [
     id: "alchemistsHut",
     specialization: ["alchemy", "brewing", "blightrot"],
     cost: [
-      { id: "plank", amount: 5 },
+      { id: "planks", amount: 5 },
       { id: "brick", amount: 2 },
     ],
     recipes: [r.crystal2, r.tea2, r.wine2],
@@ -58,16 +60,18 @@ export const buildings: Building[] = [
       { id: "bricks", amount: 2 },
     ],
     recipes: [r.tea2, r.porridge2, r.jerky2],
+    speciesRequired: "harpy",
   },
 
   {
     id: "artisan",
     specialization: ["cloth", "blightrot"],
     cost: [
-      { id: "plank", amount: 8 },
+      { id: "planks", amount: 8 },
       { id: "fabric", amount: 4 },
     ],
     recipes: [r.barrels2, r.coats2, r.scrolls2],
+    speciesRequired: "harpy",
   },
 
   {
@@ -89,6 +93,7 @@ export const buildings: Building[] = [
       { id: "fabric", amount: 8 },
     ],
     recipes: [],
+    speciesRequired: "harpy",
   },
 
   {
@@ -99,6 +104,7 @@ export const buildings: Building[] = [
       { id: "bricks", amount: 4 },
     ],
     recipes: [r.porridge3, r.pickledGoods1, r.crystal1],
+    speciesRequired: "fox",
   },
 
   {
@@ -106,6 +112,7 @@ export const buildings: Building[] = [
     specialization: [],
     cost: [{ id: "planks", amount: 8 }],
     recipes: [],
+    speciesRequired: "beaver",
   },
   {
     id: "blightPost",
@@ -127,6 +134,7 @@ export const buildings: Building[] = [
       { id: "bricks", amount: 2 },
     ],
     recipes: [r.ale3, r.porridge2, r.packOfCrops1],
+    speciesRequired: "human",
   },
 
   {
@@ -134,6 +142,7 @@ export const buildings: Building[] = [
     specialization: ["warmth", "blightrot"],
     cost: [{ id: "bricks", amount: 5 }],
     recipes: [r.pie3, r.incense2, r.coal1],
+    speciesRequired: "human",
   },
 
   {
@@ -151,6 +160,7 @@ export const buildings: Building[] = [
       { id: "bricks", amount: 2 },
     ],
     recipes: [r.skewers2, r.jerky2, r.oil2],
+    speciesRequired: "lizard",
   },
 
   {
@@ -161,6 +171,7 @@ export const buildings: Building[] = [
       { id: "fabric", amount: 2 },
     ],
     recipes: [r.paste3, r.wine2, r.biscuits1],
+    speciesRequired: "frog",
   },
 
   {
@@ -181,6 +192,7 @@ export const buildings: Building[] = [
       { id: "fabric", amount: 2 },
     ],
     recipes: [r.wine3, r.pickledGoods2, r.packOfProvisions1],
+    speciesRequired: "beaver",
   },
   {
     id: "clanHall",
@@ -191,6 +203,7 @@ export const buildings: Building[] = [
       { id: "fabric", amount: 4 },
     ],
     recipes: [],
+    speciesRequired: "lizard",
   },
   {
     id: "clayPit",
@@ -381,12 +394,24 @@ export const buildings: Building[] = [
       { id: "bricks", amount: 16 },
     ],
     recipes: [],
+    speciesRequired: "frog",
+  },
+  {
+    id: "foxHouse",
+    specialization: [],
+    cost: [
+      { id: "planks", amount: 4 },
+      { id: "crystalizedDew", amount: 2 },
+    ],
+    recipes: [],
+    speciesRequired: "fox",
   },
   {
     id: "frogHouse",
     specialization: [],
     cost: [{ id: "bricks", amount: 6 }],
     recipes: [],
+    speciesRequired: "frog",
   },
   {
     id: "furnace",
@@ -441,6 +466,7 @@ export const buildings: Building[] = [
       { id: "fabric", amount: 4 },
     ],
     recipes: [],
+    speciesRequired: "beaver",
   },
   {
     id: "hallowedHerbGarden",
@@ -459,6 +485,7 @@ export const buildings: Building[] = [
     specialization: [],
     cost: [{ id: "fabric", amount: 4 }],
     recipes: [],
+    speciesRequired: "harpy",
   },
   {
     id: "harvestersCamp",
@@ -492,6 +519,7 @@ export const buildings: Building[] = [
       { id: "bricks", amount: 2 },
     ],
     recipes: [],
+    speciesRequired: "human",
   },
   {
     id: "holyGuildHouse",
@@ -554,6 +582,7 @@ export const buildings: Building[] = [
       { id: "fabric", amount: 2 },
     ],
     recipes: [r.waterskins3, r.boots2, r.trainingGear1],
+    speciesRequired: "lizard",
   },
   {
     id: "lizardHouse",
@@ -563,6 +592,7 @@ export const buildings: Building[] = [
       { id: "bricks", amount: 2 },
     ],
     recipes: [],
+    speciesRequired: "lizard",
   },
   {
     id: "lumbermill",
@@ -622,6 +652,7 @@ export const buildings: Building[] = [
     specialization: ["warmth", "brewing", "blightrot"],
     cost: [{ id: "bricks", amount: 20 }],
     recipes: [],
+    speciesRequired: "human",
   },
   {
     id: "pantry",
@@ -631,6 +662,7 @@ export const buildings: Building[] = [
       { id: "fabric", amount: 2 },
     ],
     recipes: [r.porridge2, r.pie2, r.packOfLuxuryGoods2],
+    speciesRequired: "frog",
   },
   {
     id: "plantation",
@@ -698,6 +730,7 @@ export const buildings: Building[] = [
       { id: "fabric", amount: 2 },
     ],
     recipes: [r.scrolls3, r.packOfLuxuryGoods2, r.ale1],
+    speciesRequired: "beaver",
   },
   {
     id: "shelter",
@@ -837,6 +870,7 @@ export const buildings: Building[] = [
       { id: "cloth", amount: 8 },
     ],
     recipes: [],
+    speciesRequired: "fox",
   },
   {
     id: "teahouse",
@@ -846,6 +880,7 @@ export const buildings: Building[] = [
       { id: "bricks", amount: 2 },
     ],
     recipes: [r.tea3, r.incense2, r.waterskins1],
+    speciesRequired: "fox",
   },
   {
     id: "temple",

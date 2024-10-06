@@ -8,6 +8,7 @@ import { Stars } from "./Stars";
 import { GoodsImage } from "./GoodsImage";
 import { T } from "../components/T";
 import { Specialization } from "../components/Specialization";
+import { SpeciesImage } from "./SpeciesImage";
 
 type BuildingProps = {
   building: BuildingType;
@@ -67,7 +68,7 @@ const Specializations = ({
 };
 
 export const Building = ({
-  building: { recipes = [], id, specialization },
+  building: { recipes = [], id, specialization, speciesRequired },
   stars,
 }: BuildingProps): JSX.Element => {
   const filteredRecipes = stars
@@ -81,6 +82,15 @@ export const Building = ({
         <span className="building-title">
           <T>{id}</T>
 
+          {speciesRequired && (
+            <span className="building-required-species">
+              <SpeciesImage
+                size="small"
+                species={speciesRequired}
+                title={`This blueprint is only available with ${speciesRequired} in the settlement`}
+              />
+            </span>
+          )}
           <Specializations specializations={specialization} />
         </span>
         <span className="building-products">
