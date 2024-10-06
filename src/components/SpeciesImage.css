@@ -1,0 +1,8 @@
+.species-image {
+  display: flex;
+  aspect-ratio: 1 / 1;
+}
+
+.species-image-small {
+  width: 24px;
+}
