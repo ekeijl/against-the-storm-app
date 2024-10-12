@@ -1,13 +1,14 @@
 import { useCallback } from "react";
 import { Building as BuildingType } from "../../data/buildings";
 import { Building } from "../../components/Building";
-
+import { SpeciesName } from "../../types/Species";
 import "./BuildingsList.css";
 
 type BuildingListProps = {
   buildings: BuildingType[];
   selectedIds: string[];
   stars?: number;
+  species?: SpeciesName[];
   onSelect: (ids: string[]) => void;
 };
 
@@ -15,6 +16,7 @@ export const BuildingsList = ({
   buildings,
   selectedIds,
   stars,
+  species = [],
   onSelect,
 }: BuildingListProps): JSX.Element => {
   const handleSelect = useCallback(

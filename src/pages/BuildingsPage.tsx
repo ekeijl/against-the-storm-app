@@ -17,9 +17,11 @@ import { useVersionContext } from "../VersionContext";
 
 const BuildingsPage = (): JSX.Element => {
   const version = useVersionContext();
+  const [species, setSpecies] = useLocalStorage<string[]>("species", []);
   const form = useForm<Partial<FiltersType>>({
     defaultValues: {
       goodsType: "produces",
+      species,
     },
   });
 
@@ -29,6 +31,13 @@ const BuildingsPage = (): JSX.Element => {
   const { watch, setFocus } = form;
 
   const filters = watch();
+
+  // Set in local storage, so it updates for the species page as well
+  useEffect(() => {
+    if (filters.species) {
+      setSpecies(filters.species);
+    }
+  }, [filters.species]);
 
   const [selectedIds, setSelectedIds] = useLocalStorage<string[]>(
     "selectedBuildingIds",
@@ -42,7 +51,20 @@ const BuildingsPage = (): JSX.Element => {
     const { name, stars, goods, goodsType, specialization, onlySelected } =
       filters;
 
-    return buildings.filter(
+    let result = buildings;
+
+    // Only show buildings that match the species filter, based on building.speciesRequired
+    if (filters.species) {
+      const speciesSet = new Set(filters.species);
+      result = result.filter(({ speciesRequired }) => {
+        return (
+          !speciesRequired ||
+          !speciesSet.size ||
+          speciesSet.has(speciesRequired)
+        );
+      });
+    }
+    return result.filter(
       ({ id, recipes = [], specialization: buildingSpec }) =>
         (!name || id.includes(name)) &&
         (!stars || recipes.some((r) => r.stars === stars)) &&

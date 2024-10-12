@@ -4,11 +4,15 @@ import { StarSelector } from "../../components/StarSelector";
 import { GoodsSelector } from "../../components/GoodsSelector";
 import { Select } from "../../components/Select";
 import { Toggle } from "../../components/Toggle";
-import "./Filters.css";
 import { useKeyPress } from "../../hooks/useKeyPress";
 import { Specialization } from "../../components/Specialization";
-import { Option } from "../../types/Option";
 import { useVersionContext } from "../../VersionContext";
+import { useSpecies } from "../../util/getData";
+import { Option, OptionContext } from "../../types/Option";
+
+import "./Filters.css";
+import { Species, SpeciesName } from "../../types/Species";
+import { SpeciesImage } from "../../components/SpeciesImage";
 
 export type FiltersType = {
   name: string;
@@ -16,7 +20,13 @@ export type FiltersType = {
   goodsType: "produces" | "ingredient";
   goods: string[];
   specialization: string;
+  species: string[];
   onlySelected: boolean;
+};
+
+type SpeciesOption = {
+  label: SpeciesName;
+  value: SpeciesName;
 };
 
 type FiltersProps = {
@@ -62,9 +72,17 @@ const specOptions_1_4 = [
   "woodworking",
 ].map((o) => ({ label: o, value: o }));
 
+const speciesToOption = (species: Species) => ({
+  label: species.id,
+  value: species.id,
+  color: species.color,
+});
+
 export const Filters = ({ form, selectedIds }: FiltersProps): JSX.Element => {
   const version = useVersionContext();
   const { register, control, reset, setFocus } = form;
+
+  const { result: allSpecies } = useSpecies(version);
 
   const focusSelect = useCallback(
     (e: KeyboardEvent) => {
@@ -127,6 +145,37 @@ export const Filters = ({ form, selectedIds }: FiltersProps): JSX.Element => {
         />
       </div>
       <div className="filter-section">
+        <Controller
+          control={control}
+          name="species"
+          render={({ field }) => (
+            <Select
+              className="species-selector"
+              placeholder="Species"
+              {...field}
+              isMulti
+              isClearable={false}
+              options={allSpecies}
+              getOptionLabel={(species: Species) => species.id}
+              getOptionValue={(species: Species) => species.id}
+              formatOptionLabel={(
+                data: Species,
+                { context }: { context: OptionContext }
+              ) => {
+                return (
+                  <div className="specialization-option">
+                    <SpeciesImage
+                      species={data.id}
+                      size="small"
+                      color={data.color}
+                    />
+                    {context === "menu" ? data.id : ""}
+                  </div>
+                );
+              }}
+            />
+          )}
+        />
         <Controller
           control={control}
           name="stars"

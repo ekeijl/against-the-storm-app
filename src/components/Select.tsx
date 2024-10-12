@@ -1,23 +1,64 @@
 import ReactSelect, { OnChangeValue } from "react-select";
-
+import { forwardRef, useCallback } from "react";
+import { Option } from "../types/Option";
 type MyOption = {
   value: string;
   label: any;
+  options?: Option[];
 };
 
-const toOption = (v: string | null) => (v ? { label: v, value: v } : null);
-
-export const Select = (props: any) => {
+export const Select = forwardRef((props: any, ref) => {
   const { isMulti, onChange, value } = props;
 
-  const handleMulti = (options: OnChangeValue<MyOption, true>) =>
+  const isValue = useCallback(
+    (option: MyOption, value: string | null) => {
+      return (props.getOptionValue?.(option) || option.value) === value;
+    },
+    [props.getOptionvalue]
+  );
+
+  const toOption = useCallback(
+    (v: string | null) => {
+      if (!v || !props.options) return null;
+
+      for (const opt of props.options) {
+        if (opt.options) {
+          for (const o of opt.options) {
+            if (isValue(o, v)) {
+              return o;
+            }
+          }
+        } else if (isValue(opt, v)) {
+          return opt;
+        }
+      }
+      // return props.options?.reduce((result: MyOption, opt: MyOption) => {
+      //   if (opt.options) {
+      //     return (
+      //       opt.options.find(
+      //         (o: Option) => (props.getOptionValue?.(o) || o.value) === v
+      //       ) || result
+      //     );
+      //   }
+      //   return (props.getOptionValue?.(opt) || opt.value) === v ? opt : result;
+      // });
+    },
+    [props.options, isValue]
+  );
+
+  const handleMulti = (options: OnChangeValue<MyOption, true>) => {
     onChange(
-      options?.map((option: OnChangeValue<MyOption, false>) => option?.value)
+      options?.map(
+        (option: OnChangeValue<MyOption, false>) =>
+          props.getOptionValue?.(option) || option?.value
+      )
     );
+  };
   const handleSingle = (option: any) => onChange(option ? option.value : "");
 
   return (
     <ReactSelect
+      ref={ref}
       isMulti={isMulti}
       styles={{
         control: (base: any) => ({
@@ -55,4 +96,4 @@ export const Select = (props: any) => {
       value={isMulti ? value.map(toOption) : toOption(value)}
     />
   );
-};
+});
