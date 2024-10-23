@@ -335,7 +335,24 @@ export const coats1 = {
         id: "fabric",
         amount: 3,
       },
+
+      {
+        id: "leather",
+        amount: 3,
+      },
     ],
+    [
+
+      {
+        id: "dye",
+        amount: 4,
+      },
+
+      {
+        id: "resin",
+        amount: 4,
+      },
+    ]
   ],
   product: { id: "coats", amount: 10 },
   stars: 1,
@@ -347,7 +364,24 @@ export const coats2 = {
         id: "fabric",
         amount: 2,
       },
+
+      {
+        id: "leather",
+        amount: 2,
+      },
     ],
+    [
+
+      {
+        id: "dye",
+        amount: 3,
+      },
+
+      {
+        id: "resin",
+        amount: 3,
+      },
+    ]
   ],
   product: { id: "coats", amount: 10 },
   stars: 2,
@@ -359,7 +393,24 @@ export const coats3 = {
         id: "fabric",
         amount: 1,
       },
+
+      {
+        id: "leather",
+        amount: 1,
+      },
     ],
+    [
+
+      {
+        id: "dye",
+        amount: 2,
+      },
+
+      {
+        id: "resin",
+        amount: 2,
+      },
+    ]
   ],
   product: { id: "coats", amount: 10 },
   stars: 3,
