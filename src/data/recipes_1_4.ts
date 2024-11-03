@@ -342,7 +342,6 @@ export const coats1 = {
       },
     ],
     [
-
       {
         id: "dye",
         amount: 4,
@@ -352,7 +351,7 @@ export const coats1 = {
         id: "resin",
         amount: 4,
       },
-    ]
+    ],
   ],
   product: { id: "coats", amount: 10 },
   stars: 1,
@@ -371,7 +370,6 @@ export const coats2 = {
       },
     ],
     [
-
       {
         id: "dye",
         amount: 3,
@@ -381,7 +379,7 @@ export const coats2 = {
         id: "resin",
         amount: 3,
       },
-    ]
+    ],
   ],
   product: { id: "coats", amount: 10 },
   stars: 2,
@@ -400,7 +398,6 @@ export const coats3 = {
       },
     ],
     [
-
       {
         id: "dye",
         amount: 2,
@@ -410,7 +407,7 @@ export const coats3 = {
         id: "resin",
         amount: 2,
       },
-    ]
+    ],
   ],
   product: { id: "coats", amount: 10 },
   stars: 3,
@@ -1549,8 +1546,9 @@ export const tea2 = {
       { id: "stormWater", amount: 5 },
     ],
     [
-      { id: "crystalizedDew", amount: 2 },
-      { id: "copperBars", amount: 2 },
+      { id: "pottery", amount: 3 },
+      { id: "barrels", amount: 2 },
+      { id: "waterskins", amount: 3 },
     ],
   ],
   product: { id: "tea", amount: 10 },
@@ -1572,8 +1570,9 @@ export const tea3 = {
       { id: "stormWater", amount: 4 },
     ],
     [
-      { id: "crystalizedDew", amount: 1 },
-      { id: "copperBars", amount: 1 },
+      { id: "pottery", amount: 2 },
+      { id: "barrels", amount: 1 },
+      { id: "waterskins", amount: 2 },
     ],
   ],
   product: { id: "tea", amount: 10 },
