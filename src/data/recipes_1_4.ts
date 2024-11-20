@@ -138,6 +138,18 @@ export const biscuits2 = {
   ],
   stars: 2,
 };
+export const biscuits3 = {
+  product: { id: "biscuits", amount: 10 },
+  ingredients: [
+    [{ id: "flour", amount: 8 }],
+    [
+      { id: "herbs", amount: 2 },
+      { id: "berries", amount: 2 },
+      { id: "roots", amount: 2 },
+    ],
+  ],
+  stars: 3,
+};
 export const boots1 = {
   ingredients: [
     [
@@ -1112,6 +1124,21 @@ export const pickledGoods3f = {
   stars: 3,
 };
 
+export const pie1 = {
+  ingredients: [
+    [{ id: "flour", amount: 6 }],
+    [
+      { id: "herbs", amount: 5 },
+      { id: "meat", amount: 5 },
+      { id: "insects", amount: 5 },
+      { id: "eggs", amount: 5 },
+      { id: "berries", amount: 5 },
+      { id: "fish", amount: 5 },
+    ],
+  ],
+  product: { id: "pie", amount: 10 },
+  stars: 1,
+};
 export const pie2 = {
   ingredients: [
     [{ id: "flour", amount: 6 }],
