@@ -19,18 +19,18 @@
     },
     "lint": {
       "name": "lint",
-      "command": "yarn lint",
-      "runAtStart": false
+      "command": "yarn lint"
     },
     "build": {
       "name": "build",
-      "command": "yarn build",
-      "runAtStart": false
+      "command": "yarn build"
     },
     "serve": {
       "name": "serve",
       "command": "yarn serve",
-      "runAtStart": false
+      "preview": {
+        "port": 4173
+      }
     }
   }
 }

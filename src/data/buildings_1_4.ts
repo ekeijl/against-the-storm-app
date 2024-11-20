@@ -141,7 +141,7 @@ export const buildings: Building[] = [
     id: "brickOven",
     specialization: ["warmth", "blightrot"],
     cost: [{ id: "bricks", amount: 5 }],
-    recipes: [r.pie3, r.incense2, r.coal1],
+    recipes: [r.biscuits3, r.incense2, r.coal1],
     speciesRequired: "human",
   },
 
@@ -804,7 +804,7 @@ export const buildings: Building[] = [
     id: "smelter",
     specialization: ["warmth", "blightrot"],
     cost: [{ id: "bricks", amount: 4 }],
-    recipes: [r.copperBars3, r.trainingGear2, r.dye1],
+    recipes: [r.copperBars3, r.trainingGear2, r.pie1],
   },
   {
     id: "smithy",
