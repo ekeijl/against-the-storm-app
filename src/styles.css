@@ -28,12 +28,10 @@
 }
 
 html {
-  background-image: url("/img/bg-textured.jpg"), url("/img/bg-gradient2.svg");
-  background-attachment: fixed;
-  background-blend-mode: soft-light;
   background-color: #000;
+  background: linear-gradient(to bottom, #000000 25%, #091108 100%);
   background-repeat: no-repeat;
-  background-size: cover;
+  background-attachment: fixed;
 }
 body {
   font-family: "Roboto", "Helvetica", sans-serif;
