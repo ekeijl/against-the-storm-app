@@ -12,10 +12,7 @@
     "start": {
       "name": "start",
       "command": "yarn start",
-      "runAtStart": true,
-      "preview": {
-        "port": 5173
-      }
+      "runAtStart": true
     },
     "lint": {
       "name": "lint",
