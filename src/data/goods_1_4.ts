@@ -36,6 +36,7 @@ export const crafting = [
   "pottery",
   "reed",
   "resin",
+  "salt",
   "scales",
   "stone",
   "stormWater",
