@@ -28,7 +28,7 @@ export const Header = ({
         isClearable={false}
         value={version}
         options={[
-          { value: "1.4", label: "Version 1.4" },
+          { value: "1.4", label: "Version 1.5" },
           { value: "1.3", label: "Version 1.3" },
         ]}
         onChange={setVersion}

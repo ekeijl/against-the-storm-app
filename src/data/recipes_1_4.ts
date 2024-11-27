@@ -110,6 +110,8 @@ export const biscuits0 = {
       { id: "herbs", amount: 4 },
       { id: "berries", amount: 4 },
       { id: "roots", amount: 4 },
+      { id: "eggs", amount: 4 },
+      { id: "salt", amount: 4 },
     ],
   ],
   stars: 0,
@@ -122,6 +124,8 @@ export const biscuits1 = {
       { id: "herbs", amount: 4 },
       { id: "berries", amount: 4 },
       { id: "roots", amount: 4 },
+      { id: "eggs", amount: 4 },
+      { id: "salt", amount: 4 },
     ],
   ],
   stars: 1,
@@ -134,6 +138,8 @@ export const biscuits2 = {
       { id: "herbs", amount: 3 },
       { id: "berries", amount: 3 },
       { id: "roots", amount: 3 },
+      { id: "eggs", amount: 3 },
+      { id: "salt", amount: 3 },
     ],
   ],
   stars: 2,
@@ -146,6 +152,8 @@ export const biscuits3 = {
       { id: "herbs", amount: 2 },
       { id: "berries", amount: 2 },
       { id: "roots", amount: 2 },
+      { id: "eggs", amount: 2 },
+      { id: "salt", amount: 2 },
     ],
   ],
   stars: 3,
@@ -436,6 +444,7 @@ export const crystal1 = {
     [
       { id: "stone", amount: 4 },
       { id: "clay", amount: 4 },
+      { id: "salt", amount: 3 },
     ],
     [
       { id: "stormWater", amount: 10 },
@@ -461,6 +470,7 @@ export const crystal2 = {
     [
       { id: "stone", amount: 3 },
       { id: "clay", amount: 3 },
+      { id: "salt", amount: 2 },
     ],
     [
       { id: "stormWater", amount: 8 },
@@ -650,6 +660,7 @@ export const incense1 = {
       { id: "roots", amount: 6 },
       { id: "insects", amount: 6 },
       { id: "scales", amount: 6 },
+      { id: "salt", amount: 6 },
       { id: "resin", amount: 8 },
     ],
     [
@@ -669,6 +680,7 @@ export const incense2 = {
       { id: "roots", amount: 5 },
       { id: "insects", amount: 5 },
       { id: "scales", amount: 5 },
+      { id: "salt", amount: 5 },
       { id: "resin", amount: 7 },
     ],
     [
@@ -689,6 +701,7 @@ export const jerky0 = {
     [
       { id: "wood", amount: 5 },
       { id: "oil", amount: 2 },
+      { id: "salt", amount: 2 },
       { id: "coal", amount: 1 },
       { id: "seaMarrow", amount: 1 },
     ],
@@ -705,6 +718,7 @@ export const jerky1 = {
     [
       { id: "wood", amount: 5 },
       { id: "oil", amount: 2 },
+      { id: "salt", amount: 2 },
       { id: "coal", amount: 1 },
       { id: "seaMarrow", amount: 1 },
     ],
@@ -721,6 +735,7 @@ export const jerky2 = {
     [
       { id: "wood", amount: 5 },
       { id: "oil", amount: 2 },
+      { id: "salt", amount: 2 },
       { id: "coal", amount: 1 },
       { id: "seaMarrow", amount: 1 },
     ],
@@ -737,6 +752,7 @@ export const jerky3 = {
     [
       { id: "wood", amount: 5 },
       { id: "oil", amount: 2 },
+      { id: "salt", amount: 2 },
       { id: "coal", amount: 1 },
       { id: "seaMarrow", amount: 1 },
     ],
@@ -1131,7 +1147,6 @@ export const pie1 = {
       { id: "herbs", amount: 5 },
       { id: "meat", amount: 5 },
       { id: "insects", amount: 5 },
-      { id: "eggs", amount: 5 },
       { id: "berries", amount: 5 },
       { id: "fish", amount: 5 },
     ],
@@ -1146,7 +1161,6 @@ export const pie2 = {
       { id: "herbs", amount: 4 },
       { id: "meat", amount: 4 },
       { id: "insects", amount: 4 },
-      { id: "eggs", amount: 4 },
       { id: "berries", amount: 4 },
       { id: "fish", amount: 4 },
     ],
@@ -1161,7 +1175,6 @@ export const pie3 = {
       { id: "herbs", amount: 3 },
       { id: "meat", amount: 3 },
       { id: "insects", amount: 3 },
-      { id: "eggs", amount: 3 },
       { id: "berries", amount: 3 },
       { id: "fish", amount: 3 },
     ],
@@ -1192,7 +1205,10 @@ export const pipes2 = {
 };
 export const paste0 = {
   ingredients: [
-    [{ id: "dye", amount: 2 }],
+    [
+      { id: "dye", amount: 2 },
+      { id: "salt", amount: 3 },
+    ],
     [
       { id: "eggs", amount: 8 },
       { id: "fish", amount: 8 },
@@ -1204,7 +1220,10 @@ export const paste0 = {
 };
 export const paste1 = {
   ingredients: [
-    [{ id: "dye", amount: 2 }],
+    [
+      { id: "dye", amount: 2 },
+      { id: "paste", amount: 3 },
+    ],
     [
       { id: "eggs", amount: 6 },
       { id: "fish", amount: 6 },
@@ -1216,7 +1235,10 @@ export const paste1 = {
 };
 export const paste2 = {
   ingredients: [
-    [{ id: "dye", amount: 2 }],
+    [
+      { id: "dye", amount: 2 },
+      { id: "salt", amount: 3 },
+    ],
     [
       { id: "eggs", amount: 5 },
       { id: "fish", amount: 5 },
@@ -1229,7 +1251,10 @@ export const paste2 = {
 
 export const paste3 = {
   ingredients: [
-    [{ id: "dye", amount: 2 }],
+    [
+      { id: "dye", amount: 2 },
+      { id: "salt", amount: 3 },
+    ],
     [
       { id: "eggs", amount: 4 },
       { id: "fish", amount: 4 },
@@ -1663,6 +1688,7 @@ export const waterskins1 = {
     [
       { id: "oil", amount: 4 },
       { id: "meat", amount: 4 },
+      { id: "salt", amount: 4 },
     ],
   ],
   product: { id: "waterskins", amount: 10 },
@@ -1677,6 +1703,7 @@ export const waterskins2 = {
     [
       { id: "oil", amount: 3 },
       { id: "meat", amount: 3 },
+      { id: "salt", amount: 3 },
     ],
   ],
   product: { id: "waterskins", amount: 10 },
@@ -1691,6 +1718,7 @@ export const waterskins3 = {
     [
       { id: "oil", amount: 2 },
       { id: "meat", amount: 2 },
+      { id: "salt", amount: 2 },
     ],
   ],
   product: { id: "waterskins", amount: 10 },
