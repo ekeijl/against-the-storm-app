@@ -626,7 +626,7 @@ export const buildings: Building[] = [
       { id: "planks", amount: 5 },
       { id: "fabric", amount: 2 },
     ],
-    recipes: [r.trainingGear2, r.barrels2, r.dye2],
+    recipes: [r.fabric2, r.barrels2, r.dye2],
   },
   {
     id: "market",
@@ -729,7 +729,7 @@ export const buildings: Building[] = [
       { id: "planks", amount: 5 },
       { id: "fabric", amount: 2 },
     ],
-    recipes: [r.scrolls3, r.packOfLuxuryGoods2, r.ale1],
+    recipes: [r.scrolls3, r.packOfTradeGoods2, r.ale1],
     speciesRequired: "beaver",
   },
   {
