@@ -1200,7 +1200,7 @@ export const pipes2 = {
       { id: "crystalizedDew", amount: 2 },
     ],
   ],
-  product: { id: "pipes", amount: 2 },
+  product: { id: "pipes", amount: 3 },
   stars: 2,
 };
 export const paste0 = {
