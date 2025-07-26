@@ -7,11 +7,11 @@ import { Toggle } from "../../components/Toggle";
 import { useKeyPress } from "../../hooks/useKeyPress";
 import { Specialization } from "../../components/Specialization";
 import { useVersionContext } from "../../VersionContext";
-import { useSpecies } from "../../util/getData";
-import { Option, OptionContext } from "../../types/Option";
+import { useSpecies } from "../../hooks/useSpecies";
+import type { Option, OptionContext } from "../../types/Option";
 
 import "./Filters.css";
-import { Species, SpeciesName } from "../../types/Species";
+import type { Species, SpeciesName } from "../../types/Species";
 import { SpeciesImage } from "../../components/SpeciesImage";
 
 export type FiltersType = {
@@ -22,11 +22,6 @@ export type FiltersType = {
   specialization: string;
   species: string[];
   onlySelected: boolean;
-};
-
-type SpeciesOption = {
-  label: SpeciesName;
-  value: SpeciesName;
 };
 
 type FiltersProps = {
@@ -57,7 +52,7 @@ const specOptions_1_3 = [
   "woodworking",
 ].map((o) => ({ label: o, value: o }));
 
-const specOptions_1_4 = [
+const specOptions_1_5 = [
   "alchemy",
   "blightrot",
   "brewing",
@@ -72,17 +67,12 @@ const specOptions_1_4 = [
   "woodworking",
 ].map((o) => ({ label: o, value: o }));
 
-const speciesToOption = (species: Species) => ({
-  label: species.id,
-  value: species.id,
-  color: species.color,
-});
-
-export const Filters = ({ form, selectedIds }: FiltersProps): JSX.Element => {
+export const Filters = ({ form, selectedIds }: FiltersProps) => {
   const version = useVersionContext();
   const { register, control, reset, setFocus } = form;
 
-  const { result: allSpecies } = useSpecies(version);
+  const species = useSpecies();
+  const allSpecies = Object.values(species);
 
   const focusSelect = useCallback(
     (e: KeyboardEvent) => {
@@ -136,7 +126,7 @@ export const Filters = ({ form, selectedIds }: FiltersProps): JSX.Element => {
               isClearable
               onChange={onChange}
               value={value}
-              options={version === "1.4" ? specOptions_1_4 : specOptions_1_3}
+              options={version === "1.8" ? specOptions_1_5 : specOptions_1_3}
               formatOptionLabel={({ value, label }: Option) =>
                 renderSpecOption(value, label)
               }

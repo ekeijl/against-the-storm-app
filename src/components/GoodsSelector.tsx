@@ -1,6 +1,5 @@
 import { Select } from "./Select";
-import { grouped as grouped_1_3 } from "../data/goods";
-import { grouped as grouped_1_4 } from "../data/goods_1_4";
+import { useGoods } from "../hooks/useGoods";
 import { GoodsImage } from "./GoodsImage";
 import { Option, OptionContext } from "../types/Option";
 import { useVersionContext } from "../VersionContext";
@@ -17,8 +16,7 @@ const renderLabel = (value: string, label: string) => {
 };
 
 export const GoodsSelector = (props: any): JSX.Element => {
-  const version = useVersionContext();
-  const grouped = version === "1.4" ? grouped_1_4 : grouped_1_3;
+  const grouped = useGoods();
 
   return (
     <Select

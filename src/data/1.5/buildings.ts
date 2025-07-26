@@ -1,5 +1,5 @@
-import { SpeciesName } from "../types/Species";
-import * as r from "./recipes_1_4";
+import { SpeciesName } from "../../types/Species";
+import * as r from "./recipes";
 
 export interface Recipe {
   ingredients: Amount[][];

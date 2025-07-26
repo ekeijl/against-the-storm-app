@@ -1,4 +1,4 @@
-import { SpeciesName } from "../types/Species";
+import { SpeciesName } from "../../types/Species";
 import * as r from "./recipes";
 
 export interface Recipe {

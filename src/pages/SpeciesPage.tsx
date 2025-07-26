@@ -10,12 +10,10 @@ import type {
   NodeObject,
 } from "react-force-graph-3d";
 
-import * as s_1_3 from "../data/species";
-import * as s_1_4 from "../data/species_1_4";
+import { useSpecies } from "../hooks/useSpecies";
 import { Page } from "../components/Page";
 import "./SpeciesPage.css";
 import { Fullscreen } from "../components/Fullscreen";
-import { useVersionContext } from "../VersionContext";
 import { SpeciesImage } from "../components/SpeciesImage";
 import { SpeciesName } from "../types/Species";
 
@@ -37,9 +35,7 @@ const GROUP_NEEDS = 1;
 const GROUP_SERVICES = 2;
 
 const SpeciesPage = (): JSX.Element => {
-  const version = useVersionContext();
-
-  const s = version === "1.4" ? s_1_4 : s_1_3;
+  const s = useSpecies();
   const speciesData = useMemo(() => Object.values({ ...s }), [s]);
   const graphRef = useRef<ForceGraphMethods>();
   const [containerRef, { width, height }] = useElementSize();
@@ -164,27 +160,33 @@ const SpeciesPage = (): JSX.Element => {
         })}
         ref={containerRef}
       >
-        <ForceGraph3D
-          graphData={data}
-          ref={graphRef}
-          width={width}
-          height={height}
-          backgroundColor="rgb(0,0,0,0.5)"
-          nodeThreeObject={renderSpeciesObject}
-          linkColor={(link) => (link as Link).color}
-          linkCurvature={0.3}
-          linkOpacity={0.5}
-          numDimensions={3} // 3D graph
-          cooldownTicks={100}
-          onEngineStop={() => graphRef?.current?.zoomToFit(400, 1)}
-        />
-        <button
-          className="fullscreen-toggle"
-          onClick={toggleFullscreen}
-          title="Toggle fullscreen mode"
-        >
-          <Fullscreen />
-        </button>
+        {speciesIds.length === 0 ? (
+          <div>Select at least one species</div>
+        ) : (
+          <>
+            <ForceGraph3D
+              graphData={data}
+              ref={graphRef}
+              width={width}
+              height={height}
+              backgroundColor="rgb(0,0,0,0.5)"
+              nodeThreeObject={renderSpeciesObject}
+              linkColor={(link) => (link as Link).color}
+              linkCurvature={0.3}
+              linkOpacity={0.5}
+              numDimensions={3} // 3D graph
+              cooldownTicks={100}
+              onEngineStop={() => graphRef?.current?.zoomToFit(400, 1)}
+            />
+            <button
+              className="fullscreen-toggle"
+              onClick={toggleFullscreen}
+              title="Toggle fullscreen mode"
+            >
+              <Fullscreen />
+            </button>
+          </>
+        )}
       </div>
     </Page>
   );

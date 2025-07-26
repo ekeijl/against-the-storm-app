@@ -21,7 +21,7 @@ export default function App() {
   );
   const [timers, setTimers] = useState<Timer[]>([]);
   const [showModal, setModal] = useState<boolean>(false);
-  const [version, setVersion] = useState<VersionContextType>("1.4");
+  const [version, setVersion] = useState<VersionContextType>("1.8");
 
   const addTimer = () => {
     setModal(true);

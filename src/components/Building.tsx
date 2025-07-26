@@ -1,8 +1,8 @@
-import {
+import type {
   Building as BuildingType,
   Recipe as RecipeType,
   Amount,
-} from "../data/buildings";
+} from "../data/1.5/buildings";
 import "./Building.css";
 import { Stars } from "./Stars";
 import { GoodsImage } from "./GoodsImage";
@@ -10,12 +10,10 @@ import { T } from "../components/T";
 import { Specialization } from "../components/Specialization";
 import { SpeciesImage } from "./SpeciesImage";
 
-type BuildingProps = {
-  building: BuildingType;
-  stars?: number;
-};
-
-const Ingredient = ({ ingredient }: { ingredient: Amount[] }) => {
+interface IngredientProps {
+  ingredient: Amount[];
+}
+const Ingredient = ({ ingredient }: IngredientProps) => {
   return (
     <div className="ingredient">
       {ingredient.map(({ id, amount }) => (
@@ -27,7 +25,10 @@ const Ingredient = ({ ingredient }: { ingredient: Amount[] }) => {
   );
 };
 
-const Product = ({ product }: { product: Amount }) => {
+interface ProductProps {
+  product: Amount;
+}
+const Product = ({ product }: ProductProps) => {
   return (
     <div className="part product">
       <GoodsImage type="square" id={product.id} nr={product.amount} />
@@ -35,7 +36,10 @@ const Product = ({ product }: { product: Amount }) => {
   );
 };
 
-const Recipe = ({ recipe }: { recipe: RecipeType }) => {
+interface RecipeProps {
+  recipe: RecipeType;
+}
+const Recipe = ({ recipe }: RecipeProps) => {
   return (
     <div className="recipe">
       <h3 className="recipe-title">
@@ -53,11 +57,10 @@ const Recipe = ({ recipe }: { recipe: RecipeType }) => {
   );
 };
 
-const Specializations = ({
-  specializations,
-}: {
+interface SpecializationsProps {
   specializations: string[];
-}) => {
+}
+const Specializations = ({ specializations }: SpecializationsProps) => {
   return (
     <>
       {specializations.map((spec) => (
@@ -67,6 +70,10 @@ const Specializations = ({
   );
 };
 
+interface BuildingProps {
+  building: BuildingType;
+  stars?: number;
+}
 export const Building = ({
   building: { recipes = [], id, specialization, speciesRequired },
   stars,

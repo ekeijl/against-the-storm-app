@@ -1,4 +1,4 @@
-import { Species } from "../types/Species";
+import { Species } from "../../types/Species";
 
 export const human: Species = {
   id: "human",
@@ -6,7 +6,7 @@ export const human: Species = {
   resolve: "brewing",
   needs: ["porridge", "biscuits", "pie", "coats"],
   services: ["leisure", "religion"],
-  color: "#ffd800", // yellow
+  color: "#089b3c", // green
 };
 
 export const beaver: Species = {
@@ -22,17 +22,17 @@ export const lizard: Species = {
   id: "lizard",
   specialization: "meat",
   resolve: "warmth",
-  needs: ["jerky", "skewers", "pie", "pickledGoods", "skewers", "boots"],
-  services: ["brawling"],
+  needs: ["jerky", "skewers", "pie", "pickledGoods", "skewers"],
+  services: ["brawling", "religion"],
   color: "#e67700", // orange
 };
 
 export const fox: Species = {
   id: "fox",
   specialization: "scouting",
-  resolve: "blightrot",
-  needs: ["porridge", "skewers", "pickledGoods", "boots"],
-  services: ["religion", "treatment"],
+  resolve: "rainwater",
+  needs: ["porridge", "skewers", "pickledGoods"],
+  services: ["brawling", "luxury", "treatment"],
   color: "#c92a2a", // red
 };
 
@@ -40,16 +40,7 @@ export const harpy: Species = {
   id: "harpy",
   specialization: "alchemy",
   resolve: "cloth",
-  needs: ["jerky", "paste", "boots", "coats"],
+  needs: ["jerky", "biscuits", "pie", "coats"],
   services: ["education", "treatment"],
   color: "#c03aec", // purple
-};
-
-export const frog: Species = {
-  id: "frog",
-  specialization: "masonry",
-  resolve: "rainwater",
-  needs: ["porridge", "paste", "pie", "boots"],
-  services: ["brawling", "religion", "luxury"],
-  color: "#089b3c", // green
 };
