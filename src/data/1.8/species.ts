@@ -1,4 +1,4 @@
-import { Species } from "../types/Species";
+import { Species } from "../../types/Species";
 
 export const human: Species = {
   id: "human",
@@ -30,7 +30,7 @@ export const lizard: Species = {
 export const fox: Species = {
   id: "fox",
   specialization: "scouting",
-  resolve: "blightrot",
+  resolve: "cooperation",
   needs: ["porridge", "skewers", "pickledGoods", "boots"],
   services: ["religion", "treatment"],
   color: "#c92a2a", // red
@@ -52,4 +52,13 @@ export const frog: Species = {
   needs: ["porridge", "paste", "pie", "boots"],
   services: ["brawling", "religion", "luxury"],
   color: "#089b3c", // green
+};
+
+export const bat: Species = {
+  id: "bat",
+  specialization: "metallurgy",
+  resolve: "dedication",
+  needs: ["biscuits", "paste", "skewers", "coats"],
+  services: ["brawling", "education"],
+  color: "#ccc", // gray
 };

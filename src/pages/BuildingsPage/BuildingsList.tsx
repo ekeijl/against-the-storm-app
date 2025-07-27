@@ -1,7 +1,7 @@
 import { useCallback } from "react";
-import { Building as BuildingType } from "../../data/buildings";
+import type { Building as BuildingType } from "../../data/1.5/buildings";
 import { Building } from "../../components/Building";
-import { SpeciesName } from "../../types/Species";
+import type { SpeciesName } from "../../types/Species";
 import "./BuildingsList.css";
 
 type BuildingListProps = {

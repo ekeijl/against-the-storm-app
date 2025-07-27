@@ -1,21 +1,15 @@
 import { useMemo } from "react";
 import "./GoodsSummary.css";
-import { productsPerBuilding as p_1_3 } from "../../data/buildings";
-import { productsPerBuilding as p_1_4 } from "../../data/buildings_1_4";
 import { GoodsImage } from "../../components/GoodsImage";
-import { useVersionContext } from "../../VersionContext";
+import { useProductsPerBuildings } from "../../hooks/useBuildings";
 
 type GoodsSummaryProps = {
   buildingIds: string[];
   onSelect: (id: string) => void;
 };
 
-export const GoodsSummary = ({
-  buildingIds,
-  onSelect,
-}: GoodsSummaryProps): JSX.Element | null => {
-  const version = useVersionContext();
-  const productsPerBuilding = version === "1.4" ? p_1_4 : p_1_3;
+export const GoodsSummary = ({ buildingIds, onSelect }: GoodsSummaryProps) => {
+  const productsPerBuilding = useProductsPerBuildings();
   const productIds = useMemo(() => {
     const allIds = buildingIds?.flatMap((id: string) =>
       Array.from(productsPerBuilding.get(id) || [])

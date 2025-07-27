@@ -1,4 +1,4 @@
-import { Species } from "../types/Species";
+import { Species } from "../../types/Species";
 
 export const human: Species = {
   id: "human",

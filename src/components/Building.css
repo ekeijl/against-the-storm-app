@@ -26,6 +26,9 @@
 }
 .building-products {
   flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 2px;
 }
 
 .building-recipes {
@@ -62,6 +65,28 @@
   gap: 0.5rem;
   grid-template-columns: repeat(4, 1fr);
 }
+
+.worker-img {
+  width: 32px;
+  position: relative;
+  margin-left: 5px;
+
+  img {
+    vertical-align: middle;
+  }
+}
+
+.worker-img::after {
+  position: absolute;
+  inset: 0;
+  width: 32px;
+  text-align: center;
+  font-size: 24px;
+  color: #fff;
+  opacity: 0.9;
+  content: attr(data-workers);
+}
+
 .part {
   background: #4d3325;
   padding: 0.5rem;

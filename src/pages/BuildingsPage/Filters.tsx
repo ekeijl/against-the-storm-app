@@ -1,4 +1,4 @@
-import { useCallback } from "react";
+import { useCallback, useMemo } from "react";
 import { Controller, UseFormReturn } from "react-hook-form";
 import { StarSelector } from "../../components/StarSelector";
 import { GoodsSelector } from "../../components/GoodsSelector";
@@ -7,26 +7,23 @@ import { Toggle } from "../../components/Toggle";
 import { useKeyPress } from "../../hooks/useKeyPress";
 import { Specialization } from "../../components/Specialization";
 import { useVersionContext } from "../../VersionContext";
-import { useSpecies } from "../../util/getData";
-import { Option, OptionContext } from "../../types/Option";
+import { useSpecies } from "../../hooks/useSpecies";
+import type { Option, OptionContext } from "../../types/Option";
+import type { Specialization as SpecType } from "../../types/Specialization";
 
 import "./Filters.css";
-import { Species, SpeciesName } from "../../types/Species";
+import type { Species, SpeciesName } from "../../types/Species";
 import { SpeciesImage } from "../../components/SpeciesImage";
+import { useSpecializations } from "../../hooks/useSpecializations";
 
 export type FiltersType = {
   name: string;
   stars: number;
   goodsType: "produces" | "ingredient";
   goods: string[];
-  specialization: string;
+  specialization: SpecType;
   species: string[];
   onlySelected: boolean;
-};
-
-type SpeciesOption = {
-  label: SpeciesName;
-  value: SpeciesName;
 };
 
 type FiltersProps = {
@@ -44,45 +41,11 @@ const renderSpecOption = (value: string, label: string) => {
   );
 };
 
-const specOptions_1_3 = [
-  "alchemy",
-  "brewing",
-  "cloth",
-  "engineering",
-  "farming",
-  "meat",
-  "rainwater",
-  "scouting",
-  "warmth",
-  "woodworking",
-].map((o) => ({ label: o, value: o }));
-
-const specOptions_1_4 = [
-  "alchemy",
-  "blightrot",
-  "brewing",
-  "cloth",
-  "engineering",
-  "farming",
-  "masonry",
-  "meat",
-  "rainwater",
-  "scouting",
-  "warmth",
-  "woodworking",
-].map((o) => ({ label: o, value: o }));
-
-const speciesToOption = (species: Species) => ({
-  label: species.id,
-  value: species.id,
-  color: species.color,
-});
-
-export const Filters = ({ form, selectedIds }: FiltersProps): JSX.Element => {
-  const version = useVersionContext();
+export const Filters = ({ form, selectedIds }: FiltersProps) => {
   const { register, control, reset, setFocus } = form;
 
-  const { result: allSpecies } = useSpecies(version);
+  const species = useSpecies();
+  const allSpecies = Object.values(species);
 
   const focusSelect = useCallback(
     (e: KeyboardEvent) => {
@@ -90,6 +53,12 @@ export const Filters = ({ form, selectedIds }: FiltersProps): JSX.Element => {
       setFocus("name", { shouldSelect: true });
     },
     [setFocus]
+  );
+
+  const spec = useSpecializations();
+  const specOptions = useMemo(
+    () => spec.map((s) => ({ label: s, value: s })),
+    [spec]
   );
 
   useKeyPress(focusSelect, ["Slash"]);
@@ -128,7 +97,7 @@ export const Filters = ({ form, selectedIds }: FiltersProps): JSX.Element => {
         <Controller
           control={control}
           name="specialization"
-          defaultValue=""
+          defaultValue={undefined}
           render={({ field: { onChange, value } }) => (
             <Select
               className="specialization-selector"
@@ -136,7 +105,7 @@ export const Filters = ({ form, selectedIds }: FiltersProps): JSX.Element => {
               isClearable
               onChange={onChange}
               value={value}
-              options={version === "1.4" ? specOptions_1_4 : specOptions_1_3}
+              options={specOptions}
               formatOptionLabel={({ value, label }: Option) =>
                 renderSpecOption(value, label)
               }
