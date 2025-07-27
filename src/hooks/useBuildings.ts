@@ -8,6 +8,10 @@ import {
   buildings as b_1_5,
   productsPerBuilding as p_1_5,
 } from "../data/1.5/buildings";
+import {
+  buildings as b_1_8,
+  productsPerBuilding as p_1_8,
+} from "../data/1.8/buildings";
 
 export function useBuildings() {
   const version = useVersionContext();
@@ -16,8 +20,10 @@ export function useBuildings() {
     case "1.3":
       return b_1_3;
     case "1.5":
-    default:
       return b_1_5;
+    case "1.8":
+    default:
+      return b_1_8;
   }
 }
 
@@ -28,7 +34,9 @@ export function useProductsPerBuildings() {
     case "1.3":
       return p_1_3;
     case "1.5":
-    default:
       return p_1_5;
+    case "1.8":
+    default:
+      return p_1_8;
   }
 }

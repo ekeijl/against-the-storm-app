@@ -1,4 +1,6 @@
 import { SpeciesName } from "../../types/Species";
+import { Specialization } from "../../types/Specialization";
+import { Service } from "../../types/Service";
 import * as r from "./recipes";
 
 export interface Recipe {
@@ -12,16 +14,12 @@ export interface Amount {
   amount: number;
 }
 
-interface Service {
-  id: string;
-}
-
 export interface Building {
   id: string;
   cost: Amount[];
   recipes?: Recipe[];
   services?: Service[];
-  specialization: string[];
+  specialization: Specialization[];
   speciesRequired?: SpeciesName;
 }
 
@@ -65,7 +63,7 @@ export const buildings: Building[] = [
 
   {
     id: "artisan",
-    specialization: ["cloth", "blightrot"],
+    specialization: ["tailoring", "blightrot"],
     cost: [
       { id: "planks", amount: 8 },
       { id: "fabric", amount: 4 },
@@ -217,7 +215,7 @@ export const buildings: Building[] = [
 
   {
     id: "clothier",
-    specialization: ["cloth", "blightrot"],
+    specialization: ["tailoring", "blightrot"],
     cost: [
       { id: "planks", amount: 5 },
       { id: "fabric", amount: 2 },
@@ -227,7 +225,7 @@ export const buildings: Building[] = [
 
   {
     id: "cobbler",
-    specialization: ["cloth", "blightrot"],
+    specialization: ["tailoring", "blightrot"],
     cost: [{ id: "planks", amount: 8 }],
     recipes: [r.boots3, r.packOfBuildingMaterials2, r.dye1],
   },
@@ -348,7 +346,7 @@ export const buildings: Building[] = [
   },
   {
     id: "flawlessLeatherworker",
-    specialization: ["cloth", "meat", "blightrot"],
+    specialization: ["tailoring", "meat", "blightrot"],
     cost: [
       { id: "bricks", amount: 2 },
       { id: "fabric", amount: 2 },
@@ -576,7 +574,7 @@ export const buildings: Building[] = [
   },
   {
     id: "leatherworker",
-    specialization: ["cloth", "meat", "blightrot"],
+    specialization: ["tailoring", "meat", "blightrot"],
     cost: [
       { id: "bricks", amount: 2 },
       { id: "fabric", amount: 2 },
@@ -621,7 +619,7 @@ export const buildings: Building[] = [
   },
   {
     id: "manufactory",
-    specialization: ["cloth", "blightrot"],
+    specialization: ["tailoring", "blightrot"],
     cost: [
       { id: "planks", amount: 5 },
       { id: "fabric", amount: 2 },
@@ -844,7 +842,7 @@ export const buildings: Building[] = [
   },
   {
     id: "supplier",
-    specialization: ["cloth", "blightrot"],
+    specialization: ["tailoring", "blightrot"],
     cost: [
       { id: "planks", amount: 5 },
       { id: "bricks", amount: 2 },
@@ -936,7 +934,7 @@ export const buildings: Building[] = [
   },
   {
     id: "weaver",
-    specialization: ["cloth", "blightrot"],
+    specialization: ["tailoring", "blightrot"],
     cost: [{ id: "planks", amount: 8 }],
     recipes: [r.fabric3, r.boots1, r.trainingGear1],
   },

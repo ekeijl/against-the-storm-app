@@ -1,4 +1,4 @@
-import { useMemo, useRef } from "react";
+import { useMemo, useRef, Fragment } from "react";
 import classnames from "classnames";
 import { useLocalStorage, useElementSize, useToggle } from "usehooks-ts";
 import { Toggle } from "../components/Toggle";
@@ -15,7 +15,6 @@ import { Page } from "../components/Page";
 import "./SpeciesPage.css";
 import { Fullscreen } from "../components/Fullscreen";
 import { SpeciesImage } from "../components/SpeciesImage";
-import { SpeciesName } from "../types/Species";
 
 export interface SpeciesNode extends NodeObject {
   group?: number;
@@ -37,6 +36,7 @@ const GROUP_SERVICES = 2;
 const SpeciesPage = (): JSX.Element => {
   const s = useSpecies();
   const speciesData = useMemo(() => Object.values({ ...s }), [s]);
+  const availableSpecies = useMemo(() => Object.keys(s), [s]);
   const graphRef = useRef<ForceGraphMethods>();
   const [containerRef, { width, height }] = useElementSize();
 
@@ -44,16 +44,19 @@ const SpeciesPage = (): JSX.Element => {
     () => speciesData.map((s) => s.id),
     [speciesData]
   );
-  const [speciesIds, setSpecies] = useLocalStorage("species", speciesDefault);
+  const [selectedSpecies, setSelectedSpecies] = useLocalStorage(
+    "species",
+    speciesDefault
+  );
   const [showNeeds, setNeeds] = useLocalStorage("showNeeds", true);
   const [showServices, setServices] = useLocalStorage("showServices", true);
 
   const [fullScreen, toggleFullscreen] = useToggle();
 
-  const speciesSet = useMemo(() => new Set(speciesIds), [speciesIds]);
+  const speciesSet = useMemo(() => new Set(selectedSpecies), [selectedSpecies]);
 
   const toggleSpecies = (type: string) => {
-    setSpecies((species) => {
+    setSelectedSpecies((species) => {
       if (species.includes(type)) {
         return species.filter((s) => s !== type);
       } else {
@@ -87,7 +90,7 @@ const SpeciesPage = (): JSX.Element => {
     const servicesSet = new Set<string>();
 
     speciesData
-      .filter((s) => speciesSet.has(s.id))
+      .filter((s) => speciesSet.has(s.id) && availableSpecies.includes(s.id))
       .forEach(({ id, needs, services, color }) => {
         nodes.push({ id, group: GROUP_SPECIES });
 
@@ -160,10 +163,10 @@ const SpeciesPage = (): JSX.Element => {
         })}
         ref={containerRef}
       >
-        {speciesIds.length === 0 ? (
+        {selectedSpecies.length === 0 ? (
           <div>Select at least one species</div>
         ) : (
-          <>
+          <Fragment>
             <ForceGraph3D
               graphData={data}
               ref={graphRef}
@@ -185,7 +188,7 @@ const SpeciesPage = (): JSX.Element => {
             >
               <Fullscreen />
             </button>
-          </>
+          </Fragment>
         )}
       </div>
     </Page>

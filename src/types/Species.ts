@@ -1,5 +1,6 @@
 export type SpeciesName =
   | "human"
+  | "bat"
   | "beaver"
   | "lizard"
   | "harpy"

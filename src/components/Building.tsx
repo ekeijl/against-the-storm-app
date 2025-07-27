@@ -2,7 +2,7 @@ import type {
   Building as BuildingType,
   Recipe as RecipeType,
   Amount,
-} from "../data/1.5/buildings";
+} from "../data/1.8/buildings";
 import "./Building.css";
 import { Stars } from "./Stars";
 import { GoodsImage } from "./GoodsImage";
@@ -75,9 +75,9 @@ interface BuildingProps {
   stars?: number;
 }
 export const Building = ({
-  building: { recipes = [], id, specialization, speciesRequired },
+  building: { recipes = [], id, specialization, speciesRequired, workers },
   stars,
-}: BuildingProps): JSX.Element => {
+}: BuildingProps) => {
   const filteredRecipes = stars
     ? recipes?.filter((r) => r.stars === stars)
     : recipes;
@@ -104,6 +104,15 @@ export const Building = ({
           {products.map((p) => (
             <GoodsImage size="small" type="square" key={p.id} id={p.id} />
           ))}
+          {workers && (
+            <div
+              className="worker-img"
+              data-workers={workers}
+              title={`${workers} workers`}
+            >
+              <img src="img/worker.png" alt="Worker" />
+            </div>
+          )}
         </span>
       </summary>
       <div className="building-recipes">
