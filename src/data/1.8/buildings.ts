@@ -279,7 +279,7 @@ export const buildings: Building[] = [
 
   {
     id: "cooperage",
-    specialization: ["woodworking"],
+    specialization: ["woodworking", "metallurgy"],
     cost: [
       { id: "planks", amount: 5 },
       { id: "bricks", amount: 2 },
@@ -331,6 +331,16 @@ export const buildings: Building[] = [
     workers: 3,
   },
   {
+    id: "fieldEngineeringStation",
+    specialization: ["engineering"],
+    cost: [
+      { id: "planks", amount: 4 },
+      { id: "parts", amount: 2 },
+    ],
+    recipes: [],
+    workers: 2,
+  },
+  {
     id: "fieldKitchen",
     specialization: [],
     cost: [
@@ -343,7 +353,7 @@ export const buildings: Building[] = [
 
   {
     id: "finesmith",
-    specialization: ["alchemy"],
+    specialization: ["metallurgy", "engineering"],
     cost: [
       { id: "planks", amount: 10 },
       { id: "bricks", amount: 10 },
@@ -374,7 +384,7 @@ export const buildings: Building[] = [
   },
   {
     id: "flawlessCooperage",
-    specialization: ["woodworking"],
+    specialization: ["woodworking", "metallurgy"],
     cost: [
       { id: "planks", amount: 5 },
       { id: "bricks", amount: 2 },
@@ -415,7 +425,7 @@ export const buildings: Building[] = [
   },
   {
     id: "flawlessSmelter",
-    specialization: ["warmth"],
+    specialization: ["metallurgy", "warmth"],
     cost: [{ id: "bricks", amount: 4 }],
     recipes: [r.copperBars3, r.trainingGear3, r.pie3],
     workers: 3,
@@ -469,7 +479,7 @@ export const buildings: Building[] = [
   },
   {
     id: "furnace",
-    specialization: ["warmth"],
+    specialization: ["metallurgy", "warmth"],
     cost: [
       { id: "planks", amount: 5 },
       { id: "bricks", amount: 2 },
@@ -721,7 +731,7 @@ export const buildings: Building[] = [
   },
   {
     id: "mine",
-    specialization: ["engineering", "metallurgy"],
+    specialization: ["metallurgy", "engineering"],
     cost: [
       { id: "planks", amount: 2 },
       { id: "bricks", amount: 4 },
@@ -799,7 +809,7 @@ export const buildings: Building[] = [
   },
   {
     id: "rainpunkFoundry",
-    specialization: ["engineering", "warmth"],
+    specialization: ["metallurgy", "engineering", "warmth"],
     cost: [
       { id: "planks", amount: 8 },
       { id: "bricks", amount: 2 },
@@ -903,7 +913,7 @@ export const buildings: Building[] = [
   },
   {
     id: "smelter",
-    specialization: ["warmth"],
+    specialization: ["metallurgy", "warmth"],
     cost: [{ id: "bricks", amount: 4 }],
     recipes: [r.copperBars3, r.trainingGear2, r.pie1],
     workers: 3,
@@ -1018,7 +1028,7 @@ export const buildings: Building[] = [
   },
   {
     id: "tinkerer",
-    specialization: ["engineering"],
+    specialization: ["metallurgy", "engineering"],
     cost: [
       { id: "planks", amount: 5 },
       { id: "bricks", amount: 2 },
