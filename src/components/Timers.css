@@ -2,32 +2,35 @@
   position: fixed;
   right: 2rem;
   bottom: 2rem;
-  padding: 1rem;
+  padding: 0.7rem 1.2rem;
   background: #333333cc;
   z-index: 999;
   font-size: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  min-width: 200px;
+
+  &.done {
+    animation: ALARM 1s infinite;
+  }
+
+  .title {
+    display: block;
+    font-size: 0.8rem;
+  }
 }
 
-.timer .close {
-  position: absolute;
-  top: 2px;
-  right: 2px;
-  cursor: pointer;
-}
+.timer-buttons {
+  display: flex;
+  justify-content: end;
+  gap: 0.5rem;
+  align-content: flex-end;
 
-.timer .title {
-  display: block;
-  font-size: 0.8rem;
-}
-
-.timer.done {
-  animation: ALARM 1s infinite;
-}
-
-.timer-buttons button {
-  padding: 5px 3px;
-  font-size: 0.5em;
-  margin-right: 0.5rem;
+  button {
+    padding: 3px 8px;
+    font-size: 0.5em;
+  }
 }
 
 @keyframes ALARM {

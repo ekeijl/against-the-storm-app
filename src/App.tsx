@@ -1,10 +1,11 @@
-import { useState, Suspense, lazy, createContext } from "react";
+import { useState, Suspense, lazy, useRef } from "react";
 import { Header } from "./components/Header";
 import { Footer } from "./components/Footer";
 import { useHash } from "./hooks/useHash";
 import { Timers } from "./components/Timers";
 import { TimerModal } from "./components/TimerModal";
-import { Timer } from "./types/Timer";
+import type { Timer } from "./types/Timer";
+import type { Page } from "./types/Page";
 import { Loader } from "./components/Loader";
 import { VersionContext, VersionContextType } from "./VersionContext";
 import "./styles.css";
@@ -14,22 +15,32 @@ const LazyBuildings = lazy(() => import("./pages/BuildingsPage"));
 const LazyGoods = lazy(() => import("./pages/GoodsPage"));
 const LazySpecies = lazy(() => import("./pages/SpeciesPage"));
 
+const CURRENT_VERSION = "1.8";
+const initialTimers: Timer[] = [];
+const pages: Page[] = ["buildings", "goods", "species"];
+
+function createTimer({ id, name, time }: Timer): Timer {
+  return {
+    id,
+    name,
+    time,
+    paused: false,
+  };
+}
+
 export default function App() {
   const [hash] = useHash();
-  const [page, setPage] = useState<string | ((hash: string) => void) | null>(
-    hash || "buildings"
-  );
-  const [timers, setTimers] = useState<Timer[]>([]);
+  const [page, setPage] = useState(hash || "buildings");
+  const [timers, setTimers] = useState<Timer[]>(initialTimers);
   const [showModal, setModal] = useState<boolean>(false);
-  const [version, setVersion] = useState<VersionContextType>("1.8");
+  const [version, setVersion] = useState<VersionContextType>(CURRENT_VERSION);
 
-  const addTimer = () => {
-    setModal(true);
-  };
-  const onOkTimer = (name: string, time: number) => {
-    const id = timers.length + 1;
+  const onAddTimer = (id: string, name: string, time: number) => {
     setModal(false);
-    setTimers([...timers, { id, name: name || `Timer ${id}`, time }]);
+    setTimers([
+      ...timers,
+      createTimer({ id, name: name || `Timer ${id + 1}`, time }),
+    ]);
   };
 
   let pageComponent = null;
@@ -51,8 +62,9 @@ export default function App() {
     <>
       <div className="App">
         <Header
+          pages={pages}
           onSetPage={setPage}
-          onAddTimer={addTimer}
+          onAddTimer={() => setModal(true)}
           version={version}
           setVersion={setVersion}
         />
@@ -67,8 +79,10 @@ export default function App() {
         <Footer />
       </div>
       <TimerModal
+        key={timers.length}
+        timers={timers}
         show={showModal}
-        onOk={onOkTimer}
+        onOk={onAddTimer}
         onCancel={() => setModal(false)}
       />
     </>

@@ -9,8 +9,4 @@ const rootElement = document.getElementById("root");
 if (!rootElement) throw new Error("Failed to find the root element");
 const root = ReactDOMClient.createRoot(rootElement);
 
-root.render(
-  <StrictMode>
-    <App />
-  </StrictMode>
-);
+root.render(<App />);

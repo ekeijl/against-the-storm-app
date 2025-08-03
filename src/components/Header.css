@@ -6,57 +6,69 @@ header {
   display: flex;
   align-items: center;
   gap: 1.5rem;
+
+  :last-child {
+    margin-left: auto;
+  }
+
+  h1 {
+    font-size: clamp(0.8rem, 1.5vw, 1.5rem);
+  }
+
+  .version-selector {
+    width: 140px;
+  }
+
+  a,
+  button {
+    --anim-start: right;
+    --gradient: linear-gradient(to right, #ec5408 0%, #7e330e 100%);
+
+    font-family: "Spectral", "Times-New Roman", serif;
+    font-weight: normal;
+    font-weight: 500;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+
+    position: relative;
+    padding: 0.25rem 0.75rem;
+    min-width: 100px;
+    text-align: center;
+    border: 2px outset #896c54;
+    border-radius: 0;
+    box-shadow: inset 0 0 10px 0 rgba(0, 0, 0, 1);
+
+    background-position: var(--anim-start);
+    background-image: var(--gradient);
+    background-size: 200%;
+
+    &:hover {
+      text-decoration: none;
+      animation: bg-animation 2s infinite alternate;
+    }
+
+    &::after {
+      content: "";
+      position: absolute;
+      left: 2px;
+      top: 1px;
+      height: calc(100% - 2px);
+      width: calc(100% - 4px);
+      border: 1px outset #a94e2c;
+      pointer-events: none;
+    }
+
+    &.is-active {
+      border-color: var(--highlight-color);
+    }
+  }
 }
 
-header :last-child {
-  margin-left: auto;
-}
-
-header h1 {
-  font-size: clamp(0.8rem, 1.5vw, 1.5rem);
-}
-
-header button {
-  font-family: "Spectral", "Times-New Roman", serif;
-  font-weight: normal;
-  font-weight: 500;
-  font-size: 0.8rem;
-  text-transform: uppercase;
-
-  position: relative;
-  padding: 0.25rem 0.75rem;
-  min-width: 100px;
-  text-align: center;
-  border: 2px outset #896c54;
-  border-radius: 0;
-  box-shadow: inset 0 0 10px 0 rgba(0, 0, 0, 1);
-
-  background-image: linear-gradient(
-    to left,
-    #6b3014 0%,
-    #a44719 51%,
-    #592815 100%
-  );
-  background-size: 200% auto;
-
-  transition: 0.5s;
-}
-header button::after {
-  content: "";
-  position: absolute;
-  left: 2px;
-  top: 1px;
-  height: calc(100% - 2px);
-  width: calc(100% - 4px);
-  border: 1px outset #a94e2c;
-  pointer-events: none;
-}
-
-header button:hover {
-  text-decoration: none;
-  background-position: right center;
-}
-
-header .version-selector {
-  width: 140px;
+@keyframes bg-animation {
+  0% {
+    background-position: var(--anim-start);
+  }
+  100% {
+    background-position: left;
+  }
 }

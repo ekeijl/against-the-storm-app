@@ -1,10 +1,11 @@
-import { useEffect, useRef } from "react";
-import useDraggable from "../hooks/useDraggable";
+import { useEffect, useRef, useState } from "react";
+import { useDraggable } from "../hooks/useDraggable";
+import { useCountdown } from "../hooks/useCountdown";
 import { Timer } from "../types/Timer";
 import { beep } from "../util/beep";
 import "./Timers.css";
 
-function getTime(seconds: number): string {
+function formatTime(seconds: number): string {
   const isNegative = seconds < 0;
 
   const absTime = Math.abs(seconds);
@@ -13,44 +14,42 @@ function getTime(seconds: number): string {
   return `${isNegative ? "-" : ""}${minutePart}:${secondPart}`;
 }
 
-type TimerModalProps = {
-  timer: Timer;
-  setTime: (id: number, time: number) => void;
-  onRemoveTimer: (id: number) => void;
-  pauseTimer: (id: number) => void;
-  key: any;
+type TimerItemProps = Timer & {
+  onRemoveTimer: (id: string) => void;
+  timers: Timer[];
 };
 
-const TimerModal = ({
-  timer,
-  setTime,
-  pauseTimer,
+const HEIGHT = 120; //px
+
+const TimerItem = ({
+  id,
+  name,
+  time,
   onRemoveTimer,
-}: TimerModalProps) => {
+  timers,
+}: TimerItemProps) => {
   const draggableRef = useRef<HTMLDivElement>(null);
 
-  const [x, y] = useDraggable(draggableRef);
+  const initial = useRef([0, -1 * (timers.length - 1) * HEIGHT]);
+  const [x, y] = useDraggable(draggableRef, initial.current);
 
   const style = { transform: `translate3d(${x}px, ${y}px, 0)` };
 
-  // Count down
-  useEffect(() => {
-    const timeout = setTimeout(() => {
-      setTime(timer.id, timer.time - (timer.paused ? 0 : 1));
-    }, 1000);
-
-    return () => clearTimeout(timeout);
-  }, [timer, setTime]);
+  const { current, isPaused, isDone, reset, togglePause } = useCountdown(time);
 
   // Beep
   useEffect(() => {
-    if (timer.time <= 0 && !timer.paused) {
-      beep(200, 350, 5);
-    }
-  }, [timer]);
+    if (isDone) {
+      beep(200, 300, 3);
+      const interval = setInterval(() => {
+        beep(200, 300, 3);
+      }, 1000);
 
-  const value = getTime(timer.time);
-  const isDone = timer.time <= 0 && !timer.paused;
+      return () => clearInterval(interval);
+    }
+  }, [isDone]);
+
+  const value = formatTime(current);
 
   return (
     <div
@@ -58,26 +57,23 @@ const TimerModal = ({
       style={style}
       ref={draggableRef}
     >
-      <span className="title">{timer.name}</span>
-      <span
-        className="close"
-        role="img"
-        title="remove"
-        onClick={() => onRemoveTimer(timer.id)}
-      >
-        ❌
-      </span>
-      <input type="time" value={value} />
-
       <div className="timer-buttons">
-        <button onClick={() => pauseTimer(timer.id)}>
-          {timer.paused ? "⏵" : "⏸"}
+        <button
+          type="button"
+          title={isPaused ? "Play" : "Pause"}
+          onClick={() => togglePause()}
+        >
+          {isPaused ? "⏵" : "⏸"}
         </button>
-        <button onClick={() => setTime(timer.id, timer.time + 1)}>+1s</button>
-        <button onClick={() => setTime(timer.id, timer.time + 5)}>+5s</button>
-        <button onClick={() => setTime(timer.id, timer.time + 60)}>+1m</button>
-        <button onClick={() => setTime(timer.id, timer.time + 300)}>+5s</button>
+        <button type="button" title="Reset" onClick={() => reset()}>
+          ↺
+        </button>
+        <button title="Remove" onClick={() => onRemoveTimer(id)}>
+          ❌
+        </button>
       </div>
+      <span className="title">{name}</span>
+      <input type="time" readOnly value={value} />
     </div>
   );
 };
@@ -87,29 +83,19 @@ type TimersProps = {
   setTimers: (timers: Timer[]) => void;
 };
 
-export const Timers = ({ timers, setTimers }: TimersProps): JSX.Element => {
-  const updateTimer = (id: number, time: number) => {
-    setTimers(timers.map((t) => (t.id === id ? { ...t, time } : t)));
-  };
-
-  const removeTimer = (id: number) =>
+export const Timers = ({ timers, setTimers }: TimersProps) => {
+  const removeTimer = (id: string) => {
     setTimers(timers.filter((t) => t.id !== id));
-
-  const pauseTimer = (id: number) => {
-    setTimers(
-      timers.map((t) => (t.id === id ? { ...t, paused: !t.paused } : t))
-    );
   };
 
   return (
     <>
       {timers.map((timer) => (
-        <TimerModal
-          timer={timer}
+        <TimerItem
           key={timer.id}
-          setTime={updateTimer}
-          pauseTimer={pauseTimer}
+          {...timer}
           onRemoveTimer={removeTimer}
+          timers={timers}
         />
       ))}
     </>
