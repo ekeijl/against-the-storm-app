@@ -13,7 +13,7 @@ export const Page = ({
   isFullHeight = false,
   className = "",
   ...props
-}: PageProps): JSX.Element => (
+}: PageProps) => (
   <main
     className={classnames("page", className, { "full-height": isFullHeight })}
     {...props}

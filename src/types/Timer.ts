@@ -1,5 +1,5 @@
 export interface Timer {
-  id: number;
+  id: string;
   time: number;
   name?: string;
   paused?: boolean;

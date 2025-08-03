@@ -1,21 +1,25 @@
-
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, useId } from "react";
 import { useEventListener, useOnClickOutside } from "usehooks-ts";
+
+import type { Timer } from "../types/Timer";
 
 type TimerModalProps = {
   show: boolean;
   onCancel: () => void;
-  onOk: (name: string, time: number) => void;
+  onOk: (id: string, name: string, time: number) => void;
+  timers: Timer[];
 };
 
 export const TimerModal = ({
   show,
   onOk,
   onCancel,
-}: TimerModalProps): JSX.Element => {
+  timers,
+}: TimerModalProps) => {
+  const id = useId();
   const dialogRef = useRef<HTMLDialogElement>(null);
   const timeRef = useRef<HTMLInputElement>(null);
-  const [name, setName] = useState("Timer");
+  const [name, setName] = useState("Timer " + (timers.length + 1));
   const [time, setTime] = useState("05:00");
 
   const handleKey = (e: KeyboardEvent) => {
@@ -31,7 +35,7 @@ export const TimerModal = ({
 
     if (m && s) {
       const time = Number(m) * 60 + Number(s);
-      onOk(name, time);
+      onOk(id, name, time);
     }
   };
 
@@ -50,11 +54,13 @@ export const TimerModal = ({
     <dialog id="add-timer" ref={dialogRef} className={show ? "" : "hidden"}>
       <h3>Add timer</h3>
       <input
+        name="name"
         type="text"
         value={name}
         onChange={(e) => setName(e.target.value)}
       />
       <input
+        name="time"
         ref={timeRef}
         type="time"
         value={time}
@@ -62,8 +68,10 @@ export const TimerModal = ({
         onChange={(e) => setTime(e.target.value)}
       />
       <div className="footer">
-        <button onClick={onCancel}>Cancel</button>
-        <button className="confirm" onClick={() => onSubmit()}>
+        <button type="button" onClick={onCancel}>
+          Cancel
+        </button>
+        <button type="submit" className="confirm" onClick={() => onSubmit()}>
           OK
         </button>
       </div>

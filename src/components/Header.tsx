@@ -1,27 +1,74 @@
-import "./Header.css";
 import { Select } from "./Select";
 import { VersionContextType } from "../VersionContext";
+import { useHash } from "../hooks/useHash";
+import type { ReactNode } from "react";
+import type { Page } from "../types/Page";
 
-type HeaderProps = {
-  onSetPage: (page: string) => void;
+import "./Header.css";
+
+interface PageButtonProps {
+  page?: Page;
+  activePage: Page;
+  onClick: () => void;
+  children: ReactNode;
+}
+function PageButton({ page, activePage, ...props }: PageButtonProps) {
+  return (
+    <a
+      href={"#" + page}
+      className={page == activePage ? "is-active" : ""}
+      {...props}
+    />
+  );
+}
+
+function isPage(pages: Page[], hash: string | null): hash is Page {
+  return pages.includes(hash as Page);
+}
+
+interface HeaderProps {
+  pages: Page[];
+  onSetPage: (page: Page) => void;
   onAddTimer: () => void;
   version: VersionContextType;
   setVersion: (version: VersionContextType) => void;
-};
+}
 export const Header = ({
+  pages,
   onSetPage,
   onAddTimer,
   version,
   setVersion,
-}: HeaderProps): JSX.Element => {
+}: HeaderProps) => {
+  const [hash] = useHash();
+  const activePage = isPage(pages, hash) ? hash : "buildings";
+
   return (
     <header>
       <h1>Against the Storm companion</h1>
 
-      <button onClick={() => onSetPage("buildings")}>Buildings</button>
-      <button onClick={() => onSetPage("goods")}>Goods</button>
-      <button onClick={() => onSetPage("species")}>Species</button>
-      <button onClick={() => onAddTimer()}>⏰ Timer</button>
+      <PageButton
+        page="buildings"
+        activePage={activePage}
+        onClick={() => onSetPage("buildings")}
+      >
+        Buildings
+      </PageButton>
+      <PageButton
+        page="goods"
+        activePage={activePage}
+        onClick={() => onSetPage("goods")}
+      >
+        Goods
+      </PageButton>
+      <PageButton
+        page="species"
+        activePage={activePage}
+        onClick={() => onSetPage("species")}
+      >
+        Species
+      </PageButton>
+      <button onClick={() => onAddTimer()}>Set Timer</button>
 
       <Select
         className="version-selector"
@@ -34,6 +81,7 @@ export const Header = ({
         ]}
         onChange={setVersion}
         placeholder="Game version"
+        title="Select your game version"
       />
     </header>
   );

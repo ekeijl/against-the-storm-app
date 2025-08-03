@@ -1,16 +1,21 @@
 import { useState, RefObject } from "react";
 import { useEventListener } from "usehooks-ts";
 
+const initial = [0, 0];
+
 /**
  * Makes the target element draggable.
  * Returns the position of the target as [x, y] position.
  * @see https://www.kirupa.com/html5/drag.htm
  * @param {React.Ref} target
  */
-function useDraggable(target: RefObject<HTMLElement>): [x: number, y: number] {
+export function useDraggable(
+  target: RefObject<HTMLElement>,
+  initialPosition: number[] = initial
+): [x: number, y: number] {
   const [dragging, setDragging] = useState(false);
-  const [initialPos, setInitialPos] = useState([0, 0]);
-  const [position, setPosition] = useState([0, 0]);
+  const [initialPos, setInitialPos] = useState(() => initialPosition);
+  const [position, setPosition] = useState(() => initialPosition);
 
   const handleDragStart = (event: PointerEvent) => {
     event.preventDefault();
@@ -58,5 +63,3 @@ function useDraggable(target: RefObject<HTMLElement>): [x: number, y: number] {
 
   return position as [number, number];
 }
-
-export default useDraggable;
