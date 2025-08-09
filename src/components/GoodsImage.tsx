@@ -7,6 +7,7 @@ type GoodsImageProps = {
   type?: "square" | "round";
   size?: "small" | "medium";
   nr?: number;
+  highlightState: false | "on" | "off";
 } & React.HTMLAttributes<HTMLImageElement>;
 
 export const GoodsImage = ({
@@ -14,6 +15,7 @@ export const GoodsImage = ({
   type = "round",
   size = "medium",
   nr,
+  highlightState,
   ...props
 }: GoodsImageProps): JSX.Element => (
   <div className="goods-img-container">
@@ -21,7 +23,7 @@ export const GoodsImage = ({
       src={`img/goods/${id}.webp`}
       alt={t(id)}
       title={t(id)}
-      className={classnames("goods-img", type, size)}
+      className={classnames("goods-img", highlightState, type, size)}
       {...props}
     />
 

@@ -9,6 +9,8 @@ type BuildingListProps = {
   selectedIds: string[];
   stars?: number;
   species?: SpeciesName[];
+  highlightProduct?: string | false;
+  highlightIngredient?: string | false;
   onSelect: (ids: string[]) => void;
 };
 
@@ -16,8 +18,9 @@ export const BuildingsList = ({
   buildings,
   selectedIds,
   stars,
-  species = [],
   onSelect,
+  highlightProduct,
+  highlightIngredient,
 }: BuildingListProps): JSX.Element => {
   const handleSelect = useCallback(
     (id: string) => {
@@ -44,7 +47,12 @@ export const BuildingsList = ({
               checked={selectedIds.includes(b.id)}
               onChange={() => handleSelect(b.id)}
             />
-            <Building building={b} stars={stars} />
+            <Building
+              building={b}
+              stars={stars}
+              highlightProduct={highlightProduct}
+              highlightIngredient={highlightIngredient}
+            />
           </div>
         ))
       ) : (
