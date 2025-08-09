@@ -85,6 +85,16 @@ const BuildingsPage = (): JSX.Element => {
     setFocus("name", { shouldSelect: true });
   }, [setFocus]);
 
+  const recipeUsesGood =
+    filters.goodsType === "ingredient" &&
+    filters.goods?.length === 1 &&
+    filters.goods.at(0);
+
+  const producesGood =
+    filters.goodsType === "produces" &&
+    filters.goods?.length === 1 &&
+    filters.goods.at(0);
+
   return (
     <Page>
       <Filters form={form} selectedIds={selectedIds} />
@@ -94,6 +104,8 @@ const BuildingsPage = (): JSX.Element => {
         selectedIds={selectedIds}
         onSelect={setSelectedIds}
         stars={filters.stars}
+        highlightProduct={producesGood}
+        highlightIngredient={recipeUsesGood}
       />
 
       <GoodsSummary buildingIds={selectedIds} onSelect={selectProduct} />

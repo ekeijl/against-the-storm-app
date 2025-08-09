@@ -104,6 +104,16 @@
   aspect-ratio: 1 / 1;
 }
 
+.recipe,
+.goods-img {
+  &.on {
+    opacity: 1;
+  }
+  &.off {
+    opacity: 0.3;
+  }
+}
+
 @media screen and (min-width: 768px) {
   .building-recipes {
     display: grid;

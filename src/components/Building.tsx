@@ -9,6 +9,7 @@ import { GoodsImage } from "./GoodsImage";
 import { T } from "../components/T";
 import { Specialization } from "../components/Specialization";
 import { SpeciesImage } from "./SpeciesImage";
+import classnames from "classnames";
 
 interface IngredientProps {
   ingredient: Amount[];
@@ -38,10 +39,11 @@ const Product = ({ product }: ProductProps) => {
 
 interface RecipeProps {
   recipe: RecipeType;
+  highlightState: false | "on" | "off";
 }
-const Recipe = ({ recipe }: RecipeProps) => {
+const Recipe = ({ recipe, highlightState }: RecipeProps) => {
   return (
-    <div className="recipe">
+    <div className={classnames("recipe", highlightState)}>
       <h3 className="recipe-title">
         <GoodsImage size="small" id={recipe.product.id} type="square" />
         <T className="recipe-name">{recipe.product.id}</T>
@@ -73,15 +75,18 @@ const Specializations = ({ specializations }: SpecializationsProps) => {
 interface BuildingProps {
   building: BuildingType;
   stars?: number;
+  highlightProduct?: string | false;
+  highlightIngredient?: string | false;
 }
 export const Building = ({
   building: { recipes = [], id, specialization, speciesRequired, workers },
   stars,
+  highlightProduct,
+  highlightIngredient,
 }: BuildingProps) => {
   const filteredRecipes = stars
     ? recipes?.filter((r) => r.stars === stars)
     : recipes;
-  const products = recipes?.map((r) => r.product) ?? [];
 
   return (
     <details className="building">
@@ -101,8 +106,23 @@ export const Building = ({
           <Specializations specializations={specialization} />
         </span>
         <span className="building-products">
-          {products.map((p) => (
-            <GoodsImage size="small" type="square" key={p.id} id={p.id} />
+          {recipes?.map((r) => (
+            <GoodsImage
+              size="small"
+              type="square"
+              key={r.product.id}
+              id={r.product.id}
+              highlightState={
+                (Boolean(highlightProduct) &&
+                  r.product.id === highlightProduct) ||
+                (Boolean(highlightIngredient) &&
+                  r.ingredients
+                    .flat()
+                    .some((r) => r.id === highlightIngredient))
+                  ? "on"
+                  : "off"
+              }
+            />
           ))}
           {workers && (
             <div
@@ -117,7 +137,18 @@ export const Building = ({
       </summary>
       <div className="building-recipes">
         {filteredRecipes.map((r, index) => (
-          <Recipe recipe={r} key={index} />
+          <Recipe
+            recipe={r}
+            key={index}
+            highlightState={
+              (Boolean(highlightProduct) &&
+                r.product.id === highlightProduct) ||
+              (Boolean(highlightIngredient) &&
+                r.ingredients.flat().some((r) => r.id === highlightIngredient))
+                ? "on"
+                : "off"
+            }
+          />
         ))}
         {recipes.length === 0 ? <p>Building has no recipes!</p> : ""}
       </div>
