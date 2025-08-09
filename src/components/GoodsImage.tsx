@@ -7,7 +7,7 @@ type GoodsImageProps = {
   type?: "square" | "round";
   size?: "small" | "medium";
   nr?: number;
-  highlightState: false | "on" | "off";
+  highlightState?: false | "on" | "off";
 } & React.HTMLAttributes<HTMLImageElement>;
 
 export const GoodsImage = ({
